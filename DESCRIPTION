@@ -1,11 +1,25 @@
 Package: waves
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Title: Format and Visualize ADCP data
+Version: 0.0.1
+Author: Danielle Dempsey
+Maintainer: Danielle Dempsey <ddempsey@perennia.ca>
+Description: Facilitates wrangling and analysis of Wave data collected
+    as part of the Centre for Marine Applied Research's Coastal Monitoring
+    Program. (Compatible sensors: Workhorse Sentinel Acoustic Doppler
+    Current Profilers.)
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
+URL: https://github.com/dempsey-CMAR/waves
+BugReports: https://github.com/dempsey-CMAR/waves/issues
+Imports: 
+    adcp (>= 1.0.2),
+    data.table,
+    dplyr,
+    lubridate,
+    stringr,
+    tidyr
+Remotes: 
+    dempsey-CMAR/acdp
+RoxygenNote: 7.2.3
