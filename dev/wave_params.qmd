@@ -19,6 +19,7 @@ library(DT)
 library(ggplot2)
 library(here)
 library(plotly)
+library(readr)
 library(waves)
 library(tidyr)
 
@@ -59,23 +60,23 @@ nsdfa %>%
 
 ## Data
 
+### Data File
 ```{r, echo=TRUE}
 
-dat <- wv_read_txt(path, file_name = "2022.09.29 - Angus Shoal - Waves.txt")
+dat <- wv_read_txt(path, file_name = file_name)
 
 head(dat)
 ```
 
-- H = wave height (m)
-- T = wave period (s)
-- Dp = direction (degrees)
-- Depth = sensor depth (m)?
-- CM = ?
-- CD = ?
-- 1/10, 1/3, max, and p subscripts = ?
+### Variable Descriptions
+```{r}
+read_csv(here("dev/wave_variables.csv"), show_col_types = FALSE) %>% 
+  select(Variable, Unit, Description) %>% 
+  na.omit() %>% 
+  datatable(options = dt_options, rownames = FALSE)
+```
 
 ## Figures
-
 
 ```{r}
 #| fig-height: 10
@@ -92,9 +93,7 @@ dat_long <- dat %>%
   pivot_longer(
     cols = Hs:CD, names_to = "variable", values_to = "value"
   ) %>% 
-  mutate(
-    variable = ordered(variable, levels = levels)
-  )
+  mutate(variable = ordered(variable, levels = levels))
 
 p <- ggplot(dat_long, aes(timestamp_utc, value)) +
   geom_point(col = "grey20") +
@@ -113,9 +112,7 @@ ggplotly(p)
 
 h <- dat %>%
   select(timestamp_utc, Hs, `H1/10`, `H1/3`, Hmax) %>%
-  pivot_longer(
-    cols = Hs:Hmax, names_to = "variable", values_to = "value"
-  )
+  pivot_longer(cols = Hs:Hmax, names_to = "variable", values_to = "value")
 
 p <- h %>%
   filter(value != 0) %>%
@@ -169,13 +166,19 @@ ggplotly(p)
 
 ::: 
 
-## Processing Questions
+### Current 
+```{r}
 
-- Ensemeble or Packet mode?
-- Data screening?
-- Remove effect of current?
-- How is each variable calculated?
-- What are the zero values?
+ggplot(dat, aes(Dp, CD, col = Tp)) +
+  geom_point(alpha = 0.8)
+
+```
+
+
+## Conclusions
+
+- Zero values in wave height period values from zero-crossing analysis should be considered `NULL` values.
+- Current direction (CD) is not the same as the wave direction at the peak period (Tp).
 
 
 
