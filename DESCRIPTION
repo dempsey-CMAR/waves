@@ -1,6 +1,6 @@
 Package: waves
 Type: Package
-Title: Format and Visualize ADCP wave data
+Title: Format and Visualize ADCP Wave Data
 Version: 0.0.1
 Author: Danielle Dempsey
 Maintainer: Danielle Dempsey <ddempsey@perennia.ca>
