@@ -4,10 +4,8 @@ Title: Format and Visualize ADCP Wave Data
 Version: 0.0.1
 Author: Danielle Dempsey
 Maintainer: Danielle Dempsey <ddempsey@perennia.ca>
-Description: Facilitates wrangling and analysis of Wave data collected
-    as part of the Centre for Marine Applied Research's Coastal Monitoring
-    Program. (Compatible sensors: Workhorse Sentinel Acoustic Doppler
-    Current Profilers.)
+Description: Facilitates wrangling and analysis of Wave data collected as part of the Centre for Marine Applied Research's Coastal Monitoring Program. Compatible sensors: Workhorse Sentinel Acoustic Doppler
+    Current Profilers.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
