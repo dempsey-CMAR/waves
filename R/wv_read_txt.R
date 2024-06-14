@@ -15,6 +15,8 @@
 #'
 #'   A warning will be printed if duplicate \code{timestamp_ns} are detected.
 #'
+#'   Rows where yr, mo, da, hr, mn, and sc are all 0 will be filtered out.
+#'
 #' @param path Path to the txt file (including ".txt" extension) or to the
 #'   folder where the txt file is saved.
 #'
@@ -22,8 +24,7 @@
 #'   Include the ".txt" file extension. Default is \code{file_name = NULL}.
 #'
 #' @param rm_dups Logical argument indicating whether to remove duplicate rows.
-#'   Default is \code{TRUE}. (Note: the \code{Num} column is removed before
-#'   checking for duplicate rows.)
+#'   Default is \code{TRUE}.
 #'
 #' @param rm_ns_timestamp Logical argument indicating whether to remove the
 #'   original timestamp column. If \code{TRUE}, only the timestamp in UTC will
@@ -81,16 +82,11 @@ wv_read_txt <- function(
     mutate(
       year = case_when(
         yr >= 90 & nchar(yr) == 2 ~ yr + 1900,
-        yr < 90 & nchar(yr) == 2 ~ yr + 2000, # this will have a hard time with single digit years (e.g., with leading 0)
-        nchar(yr) == 4 ~ yr
+        yr < 90 & (nchar(yr) == 2 | nchar(yr == 1)) ~ yr + 2000,
       ),
       # do not assign tz= "America/Halifax". This will introduce NA values for the skipped hour of DST
       timestamp_ns = make_datetime(year, mo, da, hr, mn, sc, tz = "UTC")
     )
-
-  # change NaN values to NA
-  # mutate(across(V8:last_col(), ~ if_else(is.nan(.), NA_real_, .)))
-
 
 # check for duplicate timestamps ------------------------------------------
 
@@ -107,10 +103,10 @@ wv_read_txt <- function(
     )
   }
 
-
   # Return dat --------------------------------------------------------------
 
   dat %>%
+    filter(!(yr == 0 & mo == 0 & da == 0 & hr == 0 & mn == 0 & sc == 0)) %>%
     select(-c(yr, mo, da, hr, mn, sc, year)) %>%
     adcp_correct_timestamp(rm = rm_ns_timestamp)
 }

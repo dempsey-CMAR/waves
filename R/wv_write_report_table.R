@@ -21,9 +21,7 @@ wv_write_report_table <- function(metadata) {
       `Depth Sounding (m)` = Depl_Sounding,
       `Ensemble Intervals (s)` = Waves_Ensemble_Interval_s,
       `Averaging Intervals (s)` = Waves_Averaging_Interval_s,
-      `Pings per Ensemble` = Waves_PingsPerEnsemble,
-      `Bin Size (m)` = Bin_Size,
-      `First Bin Range (m)` = First_Bin_Range
+      `Pings per Ensemble` = Waves_PingsPerEnsemble
     ) %>%
     mutate(
       `Depth Sounding (m)` = as.character(`Depth Sounding (m)`),

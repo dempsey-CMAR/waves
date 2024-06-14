@@ -14,8 +14,7 @@ folder where the txt file is saved.}
 Include the ".txt" file extension. Default is \code{file_name = NULL}.}
 
 \item{rm_dups}{Logical argument indicating whether to remove duplicate rows.
-Default is \code{TRUE}. (Note: the \code{Num} column is removed before
-checking for duplicate rows.)}
+Default is \code{TRUE}.}
 
 \item{rm_ns_timestamp}{Logical argument indicating whether to remove the
 original timestamp column. If \code{TRUE}, only the timestamp in UTC will
@@ -42,4 +41,6 @@ The \code{timestamp_ns} column is in the timezone of the deployment
   true UTC using \code{adcp_correct_timestamp()}.
 
   A warning will be printed if duplicate \code{timestamp_ns} are detected.
+
+  Rows where yr, mo, da, hr, mn, and sc are all 0 will be filtered out.
 }
