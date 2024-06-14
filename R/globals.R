@@ -22,6 +22,18 @@ utils::globalVariables(c(
   "Waves_PingsPerEnsemble",
   "Depl_Duration",
   "Depl_Sounding",
-  "Depth Sounding (m)"
+  "Depth Sounding (m)",
+
+  # format_report_table
+  "Record",
+
+  # helpers
+  "depl_date",
+
+  #  wv_plot_ts
+  "variable",
+  "value",
+  "timestamp_utc",
+  "x"
 
 ))

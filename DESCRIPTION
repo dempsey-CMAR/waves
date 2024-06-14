@@ -1,6 +1,6 @@
 Package: waves
 Type: Package
-Title: Format and Visualize ADCP data
+Title: Format and Visualize ADCP wave data
 Version: 0.0.1
 Author: Danielle Dempsey
 Maintainer: Danielle Dempsey <ddempsey@perennia.ca>
@@ -17,7 +17,11 @@ Imports:
     adcp (>= 1.0.2),
     data.table,
     dplyr,
+    flextable,
+    ggplot2,
     lubridate,
+    officer,
+    RColorBrewer,
     stringr,
     tidyr
 Remotes: 
