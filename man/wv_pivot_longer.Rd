@@ -4,7 +4,7 @@
 \alias{wv_pivot_longer}
 \title{Pivot wave data}
 \usage{
-wv_pivot_longer(dat_wide, rm_na = TRUE)
+wv_pivot_longer(dat, vars = NULL)
 }
 \arguments{
 \item{dat_wide}{Data frame of ADCP wave data, as returned from
