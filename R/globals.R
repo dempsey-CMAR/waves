@@ -46,6 +46,16 @@ utils::globalVariables(c(
   "variable",
   "value",
   "timestamp_utc",
-  "x"
+  "x",
+
+  # wv_grossrange_test
+  "height_m",
+  "period_s",
+  "grossrange_flag_height",
+  "grossrange_flag_period",
+
+  # adjust_variabe_names
+  "column_names",
+  "."
 
 ))
