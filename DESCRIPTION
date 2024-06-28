@@ -20,6 +20,7 @@ Imports:
     lubridate,
     officer,
     RColorBrewer,
+    rlang,
     stringr,
     tidyr
 Remotes: 
