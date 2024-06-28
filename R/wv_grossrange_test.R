@@ -1,4 +1,4 @@
-#' Apply grossrange test to all wave height and period variables
+#' Apply grossrange test to select wave variables
 #'
 #' Applies the grossrange test to all wave height-period column pairs in
 #' \code{dat}. Pairs are: significant_height_m with peak_period_s;
@@ -27,14 +27,18 @@
 #' Wave height parameters are flagged as "Fail" if the wave height is 0 m *and*
 #' the period is <= 0 s. All other variables are flagged as "Pass".
 #'
+#' Applies the grossrange test to wave direction
+#' (sea_surface_wave_to_direction_degree). Observations are flagged as "Pass" if
+#' they are >= 0 and <= 360, and are flagged as "Fail" otherwise.
+#'
 #' @param dat Data frame of wave variables in wide format.
 #'
 #' @param return_long_names Logical argument indicating whether to return the CF
 #'   variable names (long names) or the short variable names.
 #'
 #' @return Returns \code{dat} with an additional grossrange_flag column for each
-#'   wave height and period variable. If either of these variables are missing,
-#'   the function will return \code{dat} and a message.
+#'   wave variable. If any wave height or period variables are missing, the
+#'   function will return \code{dat} and a message.
 #'
 #' @export
 
@@ -57,6 +61,11 @@ wv_all_grossrange_test <- function(dat, return_long_names = FALSE) {
     wv_grossrange_test(
       height_var = "maximum_height_m",
       period_var = "period_maximum_s"
+    ) %>%
+    mutate(
+      grossrange_flag_to_direction_degree = if_else(
+        to_direction_degree >= 0 & to_direction_degree <= 360, 1, 4
+      )
     )
 
   if(isTRUE(return_long_names)) dat <- wv_append_long_variable_names(dat)

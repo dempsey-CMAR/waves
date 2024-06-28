@@ -2,7 +2,7 @@
 % Please edit documentation in R/wv_grossrange_test.R
 \name{wv_all_grossrange_test}
 \alias{wv_all_grossrange_test}
-\title{Apply grossrange test to all wave height and period variables}
+\title{Apply grossrange test to select wave variables}
 \usage{
 wv_all_grossrange_test(dat, return_long_names = FALSE)
 }
@@ -14,8 +14,8 @@ variable names (long names) or the short variable names.}
 }
 \value{
 Returns \code{dat} with an additional grossrange_flag column for each
-  wave height and period variable. If either of these variables are missing,
-  the function will return \code{dat} and a message.
+  wave variable. If any wave height or period variables are missing, the
+  function will return \code{dat} and a message.
 }
 \description{
 Applies the grossrange test to all wave height-period column pairs in
@@ -45,4 +45,8 @@ frequency.
 
 Wave height parameters are flagged as "Fail" if the wave height is 0 m *and*
 the period is <= 0 s. All other variables are flagged as "Pass".
+
+Applies the grossrange test to wave direction
+(sea_surface_wave_to_direction_degree). Observations are flagged as "Pass" if
+they are >= 0 and <= 360, and are flagged as "Fail" otherwise.
 }
