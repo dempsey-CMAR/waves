@@ -28,6 +28,7 @@ use_package("RColorBrewer")
 use_package("stringr")
 use_package("tidyr")
 #use_package("tidyselect")
+use_package("grDevices")
 
 # add packages (not on CRAN)
 use_dev_package("adcp", remote = "dempsey-CMAR/acdp")
