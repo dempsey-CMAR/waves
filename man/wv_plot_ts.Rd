@@ -6,27 +6,31 @@
 \usage{
 wv_plot_ts(
   dat,
-  vars = c("Hs", "Hmax"),
   pal = NULL,
   y_axis_label = NULL,
-  show_legend = TRUE
+  n_col = 1,
+  scales = "fixed",
+  show_legend = FALSE
 )
 }
 \arguments{
 \item{dat}{Data frame with wave parameter data in wide or long format.}
 
-\item{vars}{Character vector indicating which variables in \code{dat} to
-plot. Should include only wave height parameters OR only period parameters.}
-
 \item{pal}{Optional colour palette. Default is the "Dark2" palette from
 \code{Rcolourbrewer}.}
 
-\item{y_axis_label}{Label for the y-axis. Default is "Wave Height (m)" for
-any parameter containing "H" and "Wave Period (s)" for any parameter
-containing "T".}
+\item{y_axis_label}{Label for the y-axis. Default is "Wave Height (m)" if
+only plotting wave variables and "Wave Period (s)" if only plotting period
+variables.}
+
+\item{n_col}{Number of columns for faceted figure. Default is 1.}
+
+\item{scales}{Character string indicating how to treat scales of the faceted
+plot. Passed to \code{facet_wrap()}. Default is "fixed". Other options are
+"free_x" and "free_y".}
 
 \item{show_legend}{Logical argument indicating whether to show figure legend.
-Default is \code{TRUE}.}
+Default is \code{FALSE}.}
 }
 \value{
 Returns a ggplot object of the plotted variables.

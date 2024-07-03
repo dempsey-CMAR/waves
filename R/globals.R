@@ -44,6 +44,7 @@ utils::globalVariables(c(
 
   #  wv_plot_ts
   "variable",
+  "variable_title",
   "value",
   "timestamp_utc",
   "x",

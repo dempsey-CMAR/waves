@@ -17,6 +17,7 @@ Imports:
     dplyr,
     flextable,
     ggplot2,
+    grDevices,
     lubridate,
     officer,
     RColorBrewer,
