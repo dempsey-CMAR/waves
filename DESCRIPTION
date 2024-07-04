@@ -20,10 +20,12 @@ Imports:
     grDevices,
     lubridate,
     officer,
+    openair,
     RColorBrewer,
     rlang,
     stringr,
-    tidyr
+    tidyr,
+    viridis
 Remotes: 
     dempsey-CMAR/acdp
 RoxygenNote: 7.2.3
