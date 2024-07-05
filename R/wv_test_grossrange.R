@@ -7,7 +7,7 @@
 #' maximum_height_m with period_maximum_s. If any of these variables are
 #' missing, the function with skip that pair with a message.
 #'
-#' For any other variable pairs, use \code{wv_grossrange_test()} instead.
+#' For any other variable pairs, use \code{wv_test_grossrange()} instead.
 #'
 #' Wave period variables with values <= 0 are flagged as "Fail". Based on the
 #' data files, it is likely that values of 0 and -0.1 are used as \code{NULL}
@@ -42,23 +42,23 @@
 #'
 #' @export
 
-wv_all_grossrange_test <- function(dat, return_long_names = FALSE) {
+wv_test_grossrange_all_vars <- function(dat, return_long_names = FALSE) {
 
   dat <- dat %>%
     wv_assign_short_variable_names() %>%
-    wv_grossrange_test(
+    wv_test_grossrange(
       height_var = "significant_height_m",
       period_var = "peak_period_s"
     ) %>%
-    wv_grossrange_test(
+    wv_test_grossrange(
       height_var = "average_height_largest_10_percent_m",
       period_var = "period_largest_10_percent_s"
     ) %>%
-    wv_grossrange_test(
+    wv_test_grossrange(
       height_var = "average_height_largest_33_percent_m",
       period_var = "period_largest_33_percent_s"
     ) %>%
-    wv_grossrange_test(
+    wv_test_grossrange(
       height_var = "maximum_height_m",
       period_var = "period_maximum_s"
     ) %>%
@@ -116,7 +116,7 @@ wv_all_grossrange_test <- function(dat, return_long_names = FALSE) {
 #'
 #' @export
 
-wv_grossrange_test <- function(dat, height_var, period_var) {
+wv_test_grossrange <- function(dat, height_var, period_var) {
 
   if(!(height_var %in% colnames(dat))) {
     message(height_var, " not found in dat.\ngrossrange flag not applied")
