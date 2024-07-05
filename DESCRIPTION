@@ -21,11 +21,13 @@ Imports:
     lubridate,
     officer,
     openair,
+    qaqcmar (>= 1.0.5),
     RColorBrewer,
     rlang,
     stringr,
     tidyr,
     viridis
-Remotes: 
+Remotes:  
+    dempsey-CMAR/acdp,
     dempsey-CMAR/acdp
 RoxygenNote: 7.2.3

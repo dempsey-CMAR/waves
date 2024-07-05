@@ -49,7 +49,7 @@ utils::globalVariables(c(
   "timestamp_utc",
   "x",
 
-  # wv_grossrange_test
+  # wv_test_grossrange
   "height_m",
   "period_s",
   "grossrange_flag_height",
@@ -58,6 +58,15 @@ utils::globalVariables(c(
 
   # adjust_variabe_names
   "column_names",
-  "."
+  ".",
+
+  #wv_test_rate_of_change
+  "depth_diff",
+  "rate_of_change_flag",
+  "rate_of_change_flag_sensor_depth_below_surface_m",
+  "sensor_depth_below_surface_m",
+
+  # wv_plot_depth_flags
+  "depth_flag"
 
 ))

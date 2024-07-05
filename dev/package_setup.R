@@ -34,6 +34,8 @@ use_package("viridis")
 
 # add packages (not on CRAN)
 use_dev_package("adcp", remote = "dempsey-CMAR/acdp")
+use_dev_package("qaqcmar", remote = "dempsey-CMAR/acdp")
+
 
 # readme
 use_readme_rmd()
