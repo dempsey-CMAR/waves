@@ -3,8 +3,12 @@
 #' @param dat Data frame of ADCP wave data, as returned from
 #'   \code{wv_read_txt()}.
 #'
-#' @param first_pivot_col Numeric value indicating the first value to pivot.
-#'   Will be ignored if \code{vars} is not \code{NULL}.
+#' @param first_pivot_col Numeric value or character string indicating the first
+#'   column to pivot. Will be ignored if \code{vars} is not \code{NULL}.
+#'
+#' @param last_pivot_col Numeric value or character string indicating the lasst
+#'   column to pivot. Default is the last column in \code{dat}. Will be ignored
+#'   if \code{vars} is not \code{NULL}.
 #'
 #' @param vars Vector of character strings indicating which columns to pivot.
 #'   Default is first_pivot_col column to the last column.
@@ -16,12 +20,16 @@
 #'
 #' @export
 
-wv_pivot_vars_longer <- function(dat, first_pivot_col = 3, vars = NULL) {
+wv_pivot_vars_longer <- function(
+    dat,
+    first_pivot_col = 3,
+    last_pivot_col = last_col(),
+    vars = NULL) {
 
   if(is.null(vars)) {
     dat %>%
       pivot_longer(
-        cols = first_pivot_col:last_col(),
+        cols = first_pivot_col:last_pivot_col,
         names_to = "variable", values_to = "value"
       )
   } else {
