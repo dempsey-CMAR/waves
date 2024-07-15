@@ -43,16 +43,6 @@
 #'
 #' @export
 
-
-# if(FALSE) {
-#
-#   library(here)
-#   path <- here("data-raw")
-#
-#   file_name <- "2022.09.29 - Angus Shoal - Waves.txt"
-# }
-
-
 wv_read_txt <- function(
     path,
     file_name = NULL,
