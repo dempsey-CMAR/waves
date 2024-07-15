@@ -67,6 +67,12 @@ wv_append_long_variable_names <- function(dat) {
         paste0("sea_surface_wave_", column_names), column_names
       ),
 
+      # remove sea_surface_wave_ from beginning of current direction col
+      column_names = if_else(
+        str_detect(column_names, "sea_surface_wave_sea_water_to_direction_degree"),
+        str_remove(column_names, "sea_surface_wave_"), column_names
+      ),
+
       # remove sea_surface_wave_ from beginning of grossrange flag cols
       column_names = if_else(
         str_detect(column_names, "grossrange_flag"),
