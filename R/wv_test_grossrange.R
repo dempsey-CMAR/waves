@@ -111,7 +111,7 @@ wv_test_grossrange_all_vars <- function(dat, return_long_names = FALSE) {
 #' @return Returns \code{dat} with an additional grossrange_flag column for the
 #'   specified wave height and period variables.
 #'
-#' @importFrom dplyr mutate rename
+#' @importFrom dplyr case_when mutate rename
 #' @importFrom data.table :=
 #'
 #' @export
@@ -133,7 +133,12 @@ wv_test_grossrange <- function(dat, height_var, period_var) {
       period_s = {{ period_var }}
     ) %>%
     mutate(
-      grossrange_flag_height = if_else(height_m  == 0 & period_s <= 0, 4, 1),
+      grossrange_flag_height = case_when(
+        height_m  == 0 & period_s <= 0 ~ 4,
+        height_m < 0 ~ 4,
+        TRUE ~ 1
+      ),
+
       grossrange_flag_period = if_else(period_s <= 0, 4, 1)
     ) %>%
     rename(
