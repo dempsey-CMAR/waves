@@ -54,6 +54,7 @@ utils::globalVariables(c(
   "period_s",
   "grossrange_flag_height",
   "grossrange_flag_period",
+  "grossrange_flag_to_direction_degree",
   "to_direction_degree",
 
   # adjust_variabe_names

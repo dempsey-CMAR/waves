@@ -7,7 +7,7 @@
 wv_convert_vars_to_title(dat, convert_to_ordered_factor = TRUE)
 }
 \arguments{
-\item{dat}{Data frame of wave data in wide or long format. Variable names
+\item{dat}{Data frame of wave data in long format. Variable names
 should be in short format. Flag columns will be dropped.}
 
 \item{convert_to_ordered_factor}{Logical variable indicating whether the new

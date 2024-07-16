@@ -1,7 +1,7 @@
 Package: waves
 Type: Package
 Title: Format and Visualize ADCP Wave Data
-Version: 0.0.1
+Version: 0.0.2
 Author: Danielle Dempsey
 Maintainer: Danielle Dempsey <ddempsey@perennia.ca>
 Description: Facilitates wrangling and analysis of Wave data collected as part of the Centre for Marine Applied Research's Coastal Monitoring Program. Compatible sensors: Workhorse Sentinel Acoustic Doppler
@@ -27,7 +27,11 @@ Imports:
     stringr,
     tidyr,
     viridis
-Remotes:  
-    dempsey-CMAR/acdp,
+Remotes: 
     dempsey-CMAR/acdp
 RoxygenNote: 7.2.3
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Depends: 
+    R (>= 2.10)

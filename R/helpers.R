@@ -27,8 +27,8 @@ wv_extract_deployment_info <- function(file_path) {
 
 #' Convert wave variables to ordered factor to control order of ggplot facets
 #'
-#' @param dat Data frame of wave data in wide or long format. Variable names
-#'   should be in short format. Flag columns will be dropped.
+#' @param dat Data frame of wave data in long format. Variable names
+#'   must be in short format. Flag columns will be dropped.
 #'
 #' @return Returns \code{dat} with \code{variable} column as an ordered factor.
 #'
@@ -39,12 +39,13 @@ wv_extract_deployment_info <- function(file_path) {
 
 wv_convert_vars_to_ordered_factor <- function(dat) {
 
-  if(!("variable" %in% colnames(dat))) {
-    dat <- dat %>%
-      wv_assign_short_variable_names() %>%
-      wv_pivot_vars_longer() %>%
-      filter(!str_detect(variable, "flag"))
-  }
+  # can't automate this unless wv_pivot_longer() get a default for first_pivot_col
+  # if(!("variable" %in% colnames(dat))) {
+  #   dat <- dat %>%
+  #     wv_assign_short_variable_names() %>%
+  #     wv_pivot_vars_longer() %>%
+  #     filter(!str_detect(variable, "flag"))
+  # }
 
   dat %>%
     mutate(
@@ -78,7 +79,7 @@ wv_convert_vars_to_ordered_factor <- function(dat) {
 
 #' Add a column of wave variables in title case
 #'
-#' @param dat Data frame of wave data in wide or long format. Variable names
+#' @param dat Data frame of wave data in long format. Variable names
 #'   should be in short format. Flag columns will be dropped.
 #'
 #' @param convert_to_ordered_factor Logical variable indicating whether the new
@@ -96,12 +97,13 @@ wv_convert_vars_to_ordered_factor <- function(dat) {
 
 wv_convert_vars_to_title <- function(dat, convert_to_ordered_factor = TRUE) {
 
-  if(!("variable" %in% colnames(dat))) {
-    dat <- dat %>%
-      wv_assign_short_variable_names() %>%
-      wv_pivot_vars_longer() %>%
-      filter(!str_detect(variable, "flag"))
-  }
+  # can't automate this unless wv_pivot_longer() get a default for first_pivot_col
+  # if(!("variable" %in% colnames(dat))) {
+  #   dat <- dat %>%
+  #     wv_assign_short_variable_names() %>%
+  #     wv_pivot_vars_longer() %>%
+  #     filter(!str_detect(variable, "flag"))
+  # }
 
   dat <- dat %>%
     mutate(

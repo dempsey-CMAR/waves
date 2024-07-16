@@ -7,8 +7,8 @@
 wv_convert_vars_to_ordered_factor(dat)
 }
 \arguments{
-\item{dat}{Data frame of wave data in wide or long format. Variable names
-should be in short format. Flag columns will be dropped.}
+\item{dat}{Data frame of wave data in long format. Variable names
+must be in short format. Flag columns will be dropped.}
 }
 \value{
 Returns \code{dat} with \code{variable} column as an ordered factor.

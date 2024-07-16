@@ -4,17 +4,26 @@
 \alias{wv_pivot_vars_longer}
 \title{Pivot wave data}
 \usage{
-wv_pivot_vars_longer(dat, first_pivot_col = 3, vars = NULL)
+wv_pivot_vars_longer(
+  dat,
+  first_pivot_col,
+  last_pivot_col = last_col(),
+  vars = NULL
+)
 }
 \arguments{
 \item{dat}{Data frame of ADCP wave data, as returned from
 \code{wv_read_txt()}.}
 
-\item{first_pivot_col}{Numeric value indicating the first value to pivot.
-Will be ignored if \code{vars} is not \code{NULL}.}
+\item{first_pivot_col}{Numeric value or character string indicating the first
+column to pivot. Will be ignored if \code{vars} is not \code{NULL}. No
+default.}
 
-\item{vars}{Vector of character strings indicating which columns to pivot.
-Default is first_pivot_col column to the last column.}
+\item{last_pivot_col}{Numeric value or character string indicating the last
+column to pivot. Default is the last column in \code{dat}. Will be ignored
+if \code{vars} is not \code{NULL}.}
+
+\item{vars}{Vector of character strings indicating which columns to pivot.}
 }
 \value{
 Returns data in a long format.
