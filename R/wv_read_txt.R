@@ -60,7 +60,6 @@ wv_read_txt <- function(
   # read in data
   dat_raw <- fread(
     path,
-    #sep2 = ",", # make separate columns for each cell
     fill = TRUE, # add NA for cells that do not have data
     header = TRUE, # keep header names
     skip = 2, # skip first two rows (duplicate header vals)
@@ -75,7 +74,12 @@ wv_read_txt <- function(
         yr < 90 & (nchar(yr) == 2 | nchar(yr == 1)) ~ yr + 2000,
       ),
       # do not assign tz= "America/Halifax". This will introduce NA values for the skipped hour of DST
-      timestamp_ns = make_datetime(year, mo, da, hr, mn, sc, tz = "UTC")
+      timestamp_ns = make_datetime(year, mo, da, hr, mn, sc, tz = "UTC"),
+
+      # convert from int to numeric now to avoiding converting quietly
+      # when pivoting dat
+      Dp = as.numeric(Dp),
+      CD = as.numeric(CD)
     )
 
 # check for duplicate timestamps ------------------------------------------
