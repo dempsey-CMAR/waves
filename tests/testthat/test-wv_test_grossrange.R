@@ -1,3 +1,6 @@
-test_that("multiplication works", {
-  expect_equal(2 * 2, 4)
+test_that("wv_test_grossrange_all_vars() assigns correct flags", {
+  expect_equal(as.numeric(unique(dat_qc_1$grossrange_flag_value)), 1)
+
+  expect_equal(as.numeric(unique(dat_qc_4$grossrange_flag_value)), 4)
+
 })
