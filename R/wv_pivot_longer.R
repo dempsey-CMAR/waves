@@ -4,32 +4,32 @@
 #'   \code{wv_read_txt()}.
 #'
 #' @param first_pivot_col Numeric value or character string indicating the first
-#'   column to pivot. Will be ignored if \code{vars} is not \code{NULL}.
+#'   column to pivot. Will be ignored if \code{vars} is not \code{NULL}. No
+#'   default.
 #'
-#' @param last_pivot_col Numeric value or character string indicating the lasst
+#' @param last_pivot_col Numeric value or character string indicating the last
 #'   column to pivot. Default is the last column in \code{dat}. Will be ignored
 #'   if \code{vars} is not \code{NULL}.
 #'
 #' @param vars Vector of character strings indicating which columns to pivot.
-#'   Default is first_pivot_col column to the last column.
 #'
 #' @return Returns data in a long format.
 #'
-#' @importFrom dplyr last_col
+#' @importFrom dplyr all_of
 #' @importFrom tidyr pivot_longer
 #'
 #' @export
 
 wv_pivot_vars_longer <- function(
     dat,
-    first_pivot_col = 3,
+    first_pivot_col,
     last_pivot_col = last_col(),
     vars = NULL) {
 
   if(is.null(vars)) {
     dat %>%
       pivot_longer(
-        cols = first_pivot_col:last_pivot_col,
+        cols = all_of(first_pivot_col):all_of(last_pivot_col),
         names_to = "variable", values_to = "value"
       )
   } else {
