@@ -65,6 +65,9 @@ wv_test_grossrange_all_vars <- function(dat, return_long_names = FALSE) {
     mutate(
       grossrange_flag_to_direction_degree = if_else(
         to_direction_degree >= 0 & to_direction_degree <= 360, 1, 4
+      ),
+      grossrange_flag_to_direction_degree = ordered(
+        grossrange_flag_to_direction_degree, levels = 1:4
       )
     )
 
@@ -139,7 +142,10 @@ wv_test_grossrange <- function(dat, height_var, period_var) {
         TRUE ~ 1
       ),
 
-      grossrange_flag_period = if_else(period_s <= 0, 4, 1)
+      grossrange_flag_period = if_else(period_s <= 0, 4, 1),
+
+      grossrange_flag_height = ordered(grossrange_flag_height, levels = 1:4),
+      grossrange_flag_period = ordered(grossrange_flag_period, levels = 1:4)
     ) %>%
     rename(
       "{height_var}" := height_m,
