@@ -13,13 +13,13 @@ wv_flag_sensor_depth_to_trim(
 \arguments{
 \item{dat}{Data frame of wave data for a single deployment in wide format.}
 
+\item{depth_threshold}{The change in \code{sensor_depth_below_surface_m}
+that will trigger a flag of 4 (in metres). Default is 1.0 m, the q95 of all
+depth data.}
+
 \item{return_depth_diff}{Logical argument indicating whether to return the
 column of \code{depth_diff} = abs(lead(sensor_depth_below_surface_m) -
 sensor_depth_below_surface_m).}
-
-\item{roc_depth_threshold}{The change in \code{sensor_depth_below_surface_m}
-that will trigger a flag of 4 (in metres). Default is 1.0 m, the q95 of all
-depth data.}
 }
 \value{
 Returns \code{dat} with the flag column

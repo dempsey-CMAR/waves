@@ -8,7 +8,7 @@
 #'
 #' @param dat Data frame of wave data for a single deployment in wide format.
 #'
-#' @param roc_depth_threshold The change in \code{sensor_depth_below_surface_m}
+#' @param depth_threshold The change in \code{sensor_depth_below_surface_m}
 #'   that will trigger a flag of 4 (in metres). Default is 1.0 m, the q95 of all
 #'   depth data.
 #'

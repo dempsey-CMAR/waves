@@ -57,15 +57,18 @@ utils::globalVariables(c(
   "grossrange_flag_to_direction_degree",
   "to_direction_degree",
 
-  # adjust_variabe_names
+  # adjust_variable_names
   "column_names",
   ".",
 
   #wv_test_rate_of_change
   "depth_diff",
-  "rate_of_change_flag",
-  "rate_of_change_flag_sensor_depth_below_surface_m",
+  "depth_trim_flag",
+  #"rate_of_change_flag",
+  #"rate_of_change_flag_sensor_depth_below_surface_m",
   "sensor_depth_below_surface_m",
+
+
 
   # wv_plot_depth_flags
   "depth_flag"
