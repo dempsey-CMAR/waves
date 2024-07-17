@@ -13,7 +13,7 @@ library(dplyr)
 library(lubridate)
 library(here)
 library(sensorstrings)
-library(qaqcmar)
+library(stringr)
 library(tidyr)
 
 #' @importfrom dplyr %>% filter mutate relocate select
@@ -29,8 +29,8 @@ dat_raw <- wv_read_txt(path, "2022-09-29_western_shoal_test_data.txt") %>%
   wv_assign_short_variable_names() #%>%
 
 # for the sensor_depth_to_trim test
-dat_raw[1, "sensor_depth_below_surface_m"] <- 10
-dat_raw[2, "sensor_depth_below_surface_m"] <- 11.5
+dat_raw[1, "sensor_depth_below_surface_m"] <- 14.1
+dat_raw[2, "sensor_depth_below_surface_m"] <- 13
 dat_raw[nrow(dat_raw) - 1, "sensor_depth_below_surface_m"] <- 13.5
 dat_raw[nrow(dat_raw), "sensor_depth_below_surface_m"] <- 15
 
