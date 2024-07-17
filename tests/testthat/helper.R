@@ -74,7 +74,7 @@ dat_qc_1 <- dat_qc %>%
 
 # export dat_qc from wv_test_Data_grossrange
 dat_trim <- readRDS(paste0(path, "/wv_test_data.RDS")) %>%
-  wv_flag_sensor_depth_to_trim()
+  wv_flag_sensor_depth_to_trim(return_depth_diff = TRUE)
 
 dat_trim_4 <- dat_trim %>%
   dplyr::slice(c(1, 2, nrow(dat_trim) - 1, nrow(dat_trim)))
