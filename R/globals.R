@@ -68,9 +68,14 @@ utils::globalVariables(c(
   #"rate_of_change_flag_sensor_depth_below_surface_m",
   "sensor_depth_below_surface_m",
 
-
-
   # wv_plot_depth_flags
-  "depth_flag"
+  "depth_flag",
+
+  # wv_summarise_flags
+  "flag_value",
+  "grossrange_flag_value",
+  "n_fl",
+  "n_obs",
+  "qc_test"
 
 ))
