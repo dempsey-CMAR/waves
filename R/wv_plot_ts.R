@@ -41,7 +41,7 @@ wv_plot_ts <- function(
     show_legend = FALSE
 ) {
 
-  # this will pivot longer if required
+
   dat <- dat %>%
     wv_convert_vars_to_title()
 
@@ -84,8 +84,8 @@ wv_plot_ts <- function(
 
   if(isFALSE(show_legend)) {
     p <- p +
-      theme(legend.position = "none") +
-      guides(fill = guide_legend(keyheight = 2))
+      theme(legend.position = "none") #+
+     # guides(fill = guide_legend(keyheight = 2))
   }
 
   p
