@@ -64,7 +64,7 @@ wv_test_grossrange_all_vars <- function(dat, return_long_names = FALSE) {
     ) %>%
     mutate(
       grossrange_flag_to_direction_degree = if_else(
-        to_direction_degree >= 0 & to_direction_degree <= 360, 1, 4
+        (to_direction_degree >= 0 & to_direction_degree <= 360), 1, 4
       ),
       grossrange_flag_to_direction_degree = ordered(
         grossrange_flag_to_direction_degree, levels = 1:4

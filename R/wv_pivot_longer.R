@@ -67,8 +67,8 @@ wv_pivot_flags_longer <- function(dat, qc_test = "grossrange") {
       names_to = paste0(qc_test, "_flag_variable"),
       names_prefix = paste0(qc_test, "_flag_"),
       values_to = paste0(qc_test, "_flag_value"),
-      values_drop_na = TRUE
+      values_drop_na = FALSE
     ) %>%
-    filter(!!sym(col_name) == variable) %>%
-    select(-!!sym(col_name))
+     filter(!!sym(col_name) == variable) %>%
+     select(-!!sym(col_name))
 }

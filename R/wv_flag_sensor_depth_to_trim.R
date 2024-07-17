@@ -36,17 +36,23 @@ wv_flag_sensor_depth_to_trim <- function(
       depth_diff = abs(
         lead(sensor_depth_below_surface_m) - sensor_depth_below_surface_m),
 
+      depth_diff = if_else(
+        row_number() == nrow(dat),
+        abs(sensor_depth_below_surface_m - lag(sensor_depth_below_surface_m)),
+        depth_diff
+      ),
+
       depth_trim_flag = case_when(
         depth_diff > depth_threshold ~ 3, # when sensor is being lowered
-        lag(depth_diff) > depth_threshold ~ 3, # when sensor is being retrieved
+       # lag(depth_diff) > depth_threshold ~ 3, # when sensor is being retrieved
         TRUE ~ 1
       ),
       depth_trim_flag = if_else(
-        (row_number() == 1 |
+        ((row_number() == 1 |
            row_number() == 2 |
            row_number() == nrow(dat) - 1 |
            row_number() == nrow(dat)) &
-          depth_trim_flag == 3, 4, depth_trim_flag),
+          depth_trim_flag == 3), 4, depth_trim_flag),
 
       depth_trim_flag = ordered(depth_trim_flag, levels = 1:4)
     )

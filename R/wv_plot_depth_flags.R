@@ -29,13 +29,10 @@ wv_plot_depth_flags <- function(
       sensor_depth_below_surface_m,
       depth_trim_flag
     ) %>%
-    #mutate(timestamp_utc = as_datetime(timestamp_utc)) %>%
     qaqcmar::qc_assign_flag_labels() %>%
-    # distinct()
     ggplot(
       aes(timestamp_utc, sensor_depth_below_surface_m, colour = depth_trim_flag)) +
     geom_point(show.legend = TRUE) +
-    #scale_y_continuous(var) +
     scale_x_datetime("Date") +
     scale_colour_manual("Flag Value", values = flag_colours, drop = FALSE) +
     theme_light() +
