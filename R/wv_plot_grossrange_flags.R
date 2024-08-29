@@ -27,7 +27,7 @@ wv_plot_grossrange_flags <- function(dat, n_col) {
     wv_convert_vars_to_title() %>%
     ggplot(aes(timestamp_utc, value, col = grossrange_flag_value)) +
     geom_point(show.legend = TRUE) +
-    scale_x_datetime("Date") +
+    scale_x_datetime("Date", date_labels = "%Y-%m-%d") +
     scale_colour_manual("Flag Value", values = flag_colours, drop = FALSE) +
     theme_light() +
     theme(

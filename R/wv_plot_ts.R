@@ -71,7 +71,7 @@ wv_plot_ts <- function(
 
   p <- ggplot(dat, aes(timestamp_utc, value, col = variable)) +
     geom_line(linewidth = 1) +
-    scale_x_datetime("Date") +
+    scale_x_datetime("Date", date_labels = "%Y-%m-%d") +
     scale_y_continuous(y_axis_label) +
     scale_colour_manual("", values = pal) +
     theme_light() +

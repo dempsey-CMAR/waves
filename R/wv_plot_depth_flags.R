@@ -33,7 +33,7 @@ wv_plot_depth_flags <- function(
     ggplot(
       aes(timestamp_utc, sensor_depth_below_surface_m, colour = depth_trim_flag)) +
     geom_point(show.legend = TRUE) +
-    scale_x_datetime("Date") +
+    scale_x_datetime("Date", date_labels = "%Y-%m-%d") +
     scale_colour_manual("Flag Value", values = flag_colours, drop = FALSE) +
     theme_light() +
     theme(
