@@ -2,7 +2,6 @@
 
 
 utils::globalVariables(c(
-
   # wv_read_txt
   "year",
   "yr",
@@ -53,9 +52,13 @@ utils::globalVariables(c(
   "height_m",
   "period_s",
   "grossrange_flag_height",
-  "grossrange_flag_period",
-  "grossrange_flag_to_direction_degree",
-  "to_direction_degree",
+  "gr_min",
+  "gr_max",
+  "user_min",
+  "user_max",
+  "grossrange_flag",
+
+  "wv_thresholds",
 
   # adjust_variable_names
   "column_names",

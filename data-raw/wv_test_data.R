@@ -88,5 +88,5 @@ dat %>%
   wv_plot_ts(scales = "free_y", n_col = 2)
 
 # Export rds file
-saveRDS(dat, file = here("inst/testdata/wv_test_data.RDS"))
+saveRDS(dat, file = here("inst/testdata/wv_test_data_grossrange.RDS"))
 

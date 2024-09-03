@@ -2,31 +2,56 @@
 % Please edit documentation in R/wv_test_grossrange.R
 \name{wv_test_grossrange}
 \alias{wv_test_grossrange}
-\title{Apply grossrange test to a pair of wave height and period variables}
+\title{Apply grossrange test to select wave variables}
 \usage{
-wv_test_grossrange(dat, height_var, period_var)
+wv_test_grossrange(
+  dat,
+  wv_grossrange_table = NULL,
+  county = NULL,
+  first_pivot_col,
+  last_pivot_col = last_col(),
+  return_long_names = FALSE
+)
 }
 \arguments{
 \item{dat}{Data frame of wave variables in wide format.}
 
-\item{height_var}{Wave height variable for which to apply the grossrange test
-(in quotes).}
+\item{wv_grossrange_table}{Data frame with at least 5 columns:
+\code{variable}: entries must match the names of the variables being tested
+in \code{dat}; \code{gr_min}: minimum acceptable value; \code{gr_max}:
+maximum accepted value ; \code{user_min}: minimum reasonable value;
+\code{user_max}: maximum reasonable value.}
 
-\item{period_var}{Period variable for which to apply the grossrange test (in
-quotes).}
+\item{county}{Character string indicating the county from which \code{dat}
+was collected. Used to filter the default \code{wv_grossrange_table}.}
+
+\item{first_pivot_col}{Numeric value or character string indicating the first
+column to pivot. Will be ignored if \code{vars} is not \code{NULL}. No
+default.}
+
+\item{last_pivot_col}{Numeric value or character string indicating the last
+column to pivot. Default is the last column in \code{dat}. Will be ignored
+if \code{vars} is not \code{NULL}.}
+
+\item{return_long_names}{Logical argument indicating whether to return the CF
+variable names (long names) or the short variable names.}
 }
 \value{
-Returns \code{dat} with an additional grossrange_flag column for the
-  specified wave height and period variables.
+Returns \code{dat} with an additional grossrange_flag column for each
+  wave variable. If any wave height or period variables are missing, the
+  function will return \code{dat} and a message.
 }
 \description{
-The grossrange test is applied to paired wave height and period variables
-(e.g., significant_height_m with peak_period_s;
+Applies the grossrange test to all wave height-period column pairs in
+\code{dat}. Pairs are: significant_height_m with peak_period_s;
 average_height_largest_10_percent_m with period_largest_10_percent_s;
 average_height_largest_33_percent_m with period_largest_33_percent_s;
-maximum_height_m with period_maximum_s).
+maximum_height_m with period_maximum_s. If any of these variables are
+missing, the function with skip that pair with a message.
 }
 \details{
+For any other variable pairs, use \code{wv_test_grossrange()} instead.
+
 Wave period variables with values <= 0 are flagged as "Fail". Based on the
 data files, it is likely that values of 0 and -0.1 are used as \code{NULL}
 values. All other values are flagged as "Pass".
@@ -44,4 +69,8 @@ frequency.
 
 Wave height parameters are flagged as "Fail" if the wave height is 0 m *and*
 the period is <= 0 s. All other variables are flagged as "Pass".
+
+Applies the grossrange test to wave direction
+(sea_surface_wave_to_direction_degree). Observations are flagged as "Pass" if
+they are >= 0 and <= 360, and are flagged as "Fail" otherwise.
 }

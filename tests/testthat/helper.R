@@ -37,11 +37,15 @@ dat4_2 <- dat6 %>%
 # grossrange test ---------------------------------------------------------
 
 # export dat_qc from wv_test_Data_grossrange
-dat_qc <- readRDS(paste0(path, "/wv_test_data.RDS")) %>%
-  wv_test_grossrange_all_vars() %>%
+dat_qc <- readRDS(paste0(path, "/wv_test_data_grossrange.RDS")) %>%
+  wv_test_grossrange(
+    county = "Halifax",
+    first_pivot_col = 3,
+    last_pivot_col = 12
+  ) %>%
   wv_pivot_vars_longer(
     first_pivot_col = 3,
-    last_pivot_col = 11)  %>%
+    last_pivot_col = 12) %>%
   wv_pivot_flags_longer()
 
 dat_qc_4 <- dat_qc %>%
@@ -73,7 +77,7 @@ dat_qc_1 <- dat_qc %>%
 # trim depth --------------------------------------------------------------
 
 # export dat_qc from wv_test_Data_grossrange
-dat_trim <- readRDS(paste0(path, "/wv_test_data.RDS")) %>%
+dat_trim <- readRDS(paste0(path, "/wv_test_data_grossrange.RDS")) %>%
   wv_flag_sensor_depth_to_trim(return_depth_diff = TRUE)
 
 dat_trim_4 <- dat_trim %>%
