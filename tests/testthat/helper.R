@@ -37,7 +37,7 @@ dat4_2 <- dat6 %>%
 # grossrange test ---------------------------------------------------------
 
 # export dat_qc from wv_test_Data_grossrange
-dat_qc <- readRDS(paste0(path, "/wv_test_data_grossrange.RDS")) %>%
+dat_gr <- readRDS(paste0(path, "/wv_test_data_grossrange.RDS")) %>%
   wv_test_grossrange(
     county = "Halifax",
     first_pivot_col = 3,
@@ -48,31 +48,25 @@ dat_qc <- readRDS(paste0(path, "/wv_test_data_grossrange.RDS")) %>%
     last_pivot_col = 12) %>%
   wv_pivot_flags_longer()
 
-dat_qc_4 <- dat_qc %>%
-  filter(
-    (day_utc == 1 &
-       (variable == "significant_height_m" | variable == "peak_period_s")) |
+# note: user_min = gr_min, so obs on day 4 are flagged Fail (not suspect)
+qc_gr_4 <- dat_gr %>%
+  filter(day_utc %in% c(2, 4, 6))
 
-      (day_utc == 2 & (variable == "average_height_largest_33_percent_m" |
-                         variable == "period_largest_33_percent_s")) |
+qc_gr_3 <- dat_gr %>%
+  filter(day_utc == 8)
 
-      (day_utc == 3 & (variable == "average_height_largest_10_percent_m" |
-                         variable == "period_largest_10_percent_s")) |
-
-      (day_utc == 4 & (variable == "maximum_height_m" |
-                         variable == "period_maximum_s")) |
-
-      ((day_utc == 5 | day_utc == 6) & variable == "to_direction_degree")
-  )
-
-
-dat_qc_1 <- dat_qc %>%
+qc_gr_1 <- dat_gr %>%
   dplyr::anti_join(
-    dat_qc_4,
+    qc_gr_4,
     by = dplyr::join_by(
       timestamp_utc, day_utc, variable, value, grossrange_flag_value
     )
-  )
+  ) %>%
+  dplyr::anti_join(
+    qc_gr_3,
+    by = dplyr::join_by(
+      timestamp_utc, day_utc, variable, value, grossrange_flag_value
+    ))
 
 # trim depth --------------------------------------------------------------
 

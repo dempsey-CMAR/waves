@@ -2,9 +2,9 @@
 % Please edit documentation in R/wv_test_grossrange.R
 \name{wv_test_grossrange_height_period}
 \alias{wv_test_grossrange_height_period}
-\title{Apply grossrange test to a pair of wave height and period variables}
+\title{Additional qc for height and period variables}
 \usage{
-wv_test_grossrange_height_period(dat, height_var, period_var, flag_col)
+wv_test_grossrange_height_period(dat, height_var, period_var)
 }
 \arguments{
 \item{dat}{Data frame of wave variables in wide format.}
@@ -13,9 +13,6 @@ wv_test_grossrange_height_period(dat, height_var, period_var, flag_col)
 (in quotes).}
 
 \item{period_var}{Period variable for which to apply the grossrange test (in
-quotes).}
-
-\item{flag_col}{Name of the height variable grossrange flag column (in
 quotes).}
 }
 \value{
