@@ -16,7 +16,7 @@
 
 wv_plot_grossrange_flags <- function(dat, n_col) {
 
-  flag_colours <- c("chartreuse4",  "#DB4325")
+  flag_colours <- c("chartreuse4", "grey24", "#EDA247", "#DB4325")
 
   if(!("grossrange_flag_value" %in% colnames(dat))) {
     dat <- dat %>% wv_pivot_flags_longer()

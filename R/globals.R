@@ -51,12 +51,13 @@ utils::globalVariables(c(
   # wv_test_grossrange
   "height_m",
   "period_s",
-  "grossrange_flag_height",
+  "grossrange_flag",
   "gr_min",
   "gr_max",
   "user_min",
   "user_max",
-  "grossrange_flag",
+  "height_flag",
+  "period_flag",
 
   "wv_thresholds",
 
