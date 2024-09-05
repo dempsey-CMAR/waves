@@ -27,8 +27,9 @@ Imports:
     stringr,
     tidyr,
     viridis
-Remotes: 
-    dempsey-CMAR/adcp
+Remotes:  
+    dempsey-CMAR/adcp,
+    dempsey-CMAR/qaqcmar
 RoxygenNote: 7.2.3
 Suggests: 
     testthat (>= 3.0.0)
