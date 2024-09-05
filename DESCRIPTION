@@ -12,7 +12,7 @@ LazyData: true
 URL: https://github.com/dempsey-CMAR/waves
 BugReports: https://github.com/dempsey-CMAR/waves/issues
 Imports: 
-    adcp (>= 1.0.2),
+    adcp (>= 2.0.0),
     data.table,
     dplyr,
     flextable,
@@ -28,7 +28,7 @@ Imports:
     tidyr,
     viridis
 Remotes: 
-    dempsey-CMAR/acdp
+    dempsey-CMAR/adcp
 RoxygenNote: 7.2.3
 Suggests: 
     testthat (>= 3.0.0)
