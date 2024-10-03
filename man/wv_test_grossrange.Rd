@@ -2,14 +2,13 @@
 % Please edit documentation in R/wv_test_grossrange.R
 \name{wv_test_grossrange}
 \alias{wv_test_grossrange}
-\title{Apply grossrange test to select wave variables}
+\title{Apply grossrange test to wave variables}
 \usage{
 wv_test_grossrange(
   dat,
   wv_grossrange_table = NULL,
   county = NULL,
-  first_pivot_col,
-  last_pivot_col = last_col(),
+  vars = NULL,
   return_long_names = FALSE
 )
 }
@@ -25,13 +24,8 @@ maximum accepted value ; \code{user_min}: minimum reasonable value;
 \item{county}{Character string indicating the county from which \code{dat}
 was collected. Used to filter the default \code{wv_grossrange_table}.}
 
-\item{first_pivot_col}{Numeric value or character string indicating the first
-column to pivot. Will be ignored if \code{vars} is not \code{NULL}. No
-default.}
-
-\item{last_pivot_col}{Numeric value or character string indicating the last
-column to pivot. Default is the last column in \code{dat}. Will be ignored
-if \code{vars} is not \code{NULL}.}
+\item{vars}{Vector of character strings indicating which columns to pivot.
+Default is all variables (with column names in the "short" format).}
 
 \item{return_long_names}{Logical argument indicating whether to return the CF
 variable names (long names) or the short variable names.}
