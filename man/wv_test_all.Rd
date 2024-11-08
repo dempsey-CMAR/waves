@@ -10,10 +10,12 @@ wv_test_all(
   county = NULL,
   wv_grossrange_table = NULL,
   wv_rolling_sd_table = NULL,
+  wv_spike_table = NULL,
   period_hours = 24,
   max_interval_hours = 2,
   align_window = "center",
   keep_sd_cols = FALSE,
+  keep_spike_cols = FALSE,
   ping = FALSE
 )
 }
@@ -42,6 +44,16 @@ maximum accepted value ; \code{user_min}: minimum reasonable value;
   default \code{rolling_sd_table}, type \code{subset(wv_thresholds,
   qc_test == "rolling_sd")} in the console.}
 
+\item{wv_spike_table}{Data frame with at least 3 columns: \code{variable}:
+  should match the names of the variables being tested in \code{dat}.
+  \code{spike_low}: maximum acceptable spike value to "Pass", and
+  \code{spike_high}: maximum acceptable value to be flagged "Suspect/Of
+  Interest".
+
+  Default values are used if \code{wv_spike_table = NULL}. To see the
+  default \code{wv_spike_table}, type \code{subset(wv_thresholds,
+  qc_test == "spike")} in the console.}
+
 \item{period_hours}{Length of a full cycle in hours. Default assumes a daily
 cycle of \code{period_hours = 24}.}
 
@@ -61,6 +73,10 @@ window) and \code{"left"} (forward window).}
 \item{keep_sd_cols}{Logical value. If \code{TRUE}, the columns used to
 produce the rolling standard deviation (\code{int_sample}, \code{n_sample},
 and \code{sd_roll}) are returned in \code{dat}. Default is \code{FALSE}.}
+
+\item{keep_spike_cols}{Logical value. If \code{TRUE}, the columns used to
+produce the spike value are returned in \code{dat}. Default is
+\code{FALSE}.}
 
 \item{ping}{Logical argument. If \code{TRUE}, a "ping" sound will be played
 when the function has completed. If function is run several times in quick

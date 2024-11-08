@@ -75,8 +75,13 @@ dat_rolling_sd <- readRDS(paste0(path, "/wv_test_data_rolling_sd.RDS")) %>%
 rolling_sd_3 <- dat_rolling_sd %>%
   filter(
     timestamp_utc >= as_datetime("2023-01-02 20:00:00") &
-      timestamp_utc <= as_datetime("2023-01-04 04:00:00")
+      timestamp_utc <= as_datetime("2023-01-04 04:00:00") |
+      (timestamp_utc %in% c(
+        as_datetime("2023-01-02 18:00:00"),
+        as_datetime("2023-01-02 19:00:00")) &
+         variable == "period_maximum_s")
   )
+
 
 rolling_sd_2 <- dat_rolling_sd %>%
   filter(
@@ -97,25 +102,79 @@ rolling_sd_1 <- dat_rolling_sd %>%
       timestamp_utc, day_utc, variable, value, rolling_sd_flag_value
     ))
 
+# Spike -------------------------------------------------------------------
+
+dat_spike <- readRDS(paste0(path, "/wv_test_data_spike.RDS")) %>%
+  wv_test_spike(county = "Yarmouth") %>%
+  wv_pivot_flags_longer(qc_tests = "spike")
+
+spike_2 <- dat_spike %>%
+  group_by(variable) %>%
+  filter(row_number() == 1 | row_number() == n())
+
+spike_3 <- dat_spike %>%
+  filter(
+    (day_utc == 3 & hour_utc == 0) |
+      (day_utc == 3 & hour_utc == 12) |
+      (day_utc == 4 & hour_utc == 23) |
+      (day_utc == 5 & hour_utc == 1) |
+      (day_utc == 5 & hour_utc == 11) |
+      (day_utc == 5 & hour_utc == 13)
+  )
+
+spike_4 <- dat_spike %>%
+  filter(
+    (day_utc == 5 & hour_utc == 0) |
+      (day_utc == 5 & hour_utc == 12)
+  )
+
+spike_1 <- dat_spike %>%
+  dplyr::anti_join(
+    spike_2,
+    by = dplyr::join_by(
+      timestamp_utc, day_utc, variable, value, spike_flag_value
+    )
+  ) %>%
+  dplyr::anti_join(
+    spike_3,
+    by = dplyr::join_by(
+      timestamp_utc, day_utc, variable, value, spike_flag_value
+    )
+  ) %>%
+  dplyr::anti_join(
+    spike_4,
+    by = dplyr::join_by(
+      timestamp_utc, day_utc, variable, value, spike_flag_value
+    ))
+
 # wv_test_all -------------------------------------------------------------
 
 dat_all <- dat_rolling_sd %>%
-  select(-rolling_sd_flag_value) %>%
+  select(-c(rolling_sd_flag_value, day_utc)) %>%
   pivot_wider(values_from = "value", names_from = "variable")
 
 dat_all_qc <- dat_all %>%
   wv_test_all(county = "Halifax")
 
 
+# Assign max flag ---------------------------------------------------------
 
-
-
+dat_max_flag <- data.frame(
+  timestamp_utc = c("a", "b", "c", "d", "e"),
+  variable = "significant_wave_height_m",
+  value = round(c(runif(5)), digits = 2),
+  grossrange_flag_value = c(1, 0, 2, 3, 1),
+  rolling_sd_flag_value = c(0, 2, 1, 3, 1),
+  spike_flag_value = c(1, 1, 3, 4, 4)
+) %>%
+  wv_assign_max_flag()
 
 # trim depth --------------------------------------------------------------
 
 # export dat_qc from wv_test_Data_grossrange
 dat_trim <- readRDS(paste0(path, "/wv_test_data_grossrange.RDS")) %>%
-  wv_flag_sensor_depth_to_trim(return_depth_diff = TRUE)
+  wv_start_end_obs_to_trim(return_depth_diff = TRUE)
+  #wv_flag_sensor_depth_to_trim(return_depth_diff = TRUE)
 
 dat_trim_4 <- dat_trim %>%
   dplyr::slice(c(1, 2, nrow(dat_trim) - 1, nrow(dat_trim)))

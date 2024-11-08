@@ -1,4 +1,4 @@
-#' Apply grossrange test to select wave variables
+#' Apply grossrange test to wave variables
 #'
 #' Applies the grossrange test to all wave height-period column pairs in
 #' \code{dat}. Pairs are: significant_height_m with peak_period_s;
@@ -39,9 +39,6 @@
 #'   maximum accepted value ; \code{user_min}: minimum reasonable value;
 #'   \code{user_max}: maximum reasonable value.
 #'
-#' @param return_long_names Logical argument indicating whether to return the CF
-#'   variable names (long names) or the short variable names.
-#'
 #' @param county Character string indicating the county from which \code{dat}
 #'   was collected. Used to filter the default \code{wv_grossrange_table}.
 #'
@@ -63,9 +60,8 @@ wv_test_grossrange <- function(
     dat,
     wv_grossrange_table = NULL,
     county = NULL,
-    first_pivot_col,
-    last_pivot_col = last_col(),
-    return_long_names = FALSE) {
+    vars = NULL
+    ) {
 
   message("applying grossrange test")
 
@@ -94,10 +90,7 @@ wv_test_grossrange <- function(
   }
 
   dat <- dat %>%
-    wv_pivot_vars_longer(
-      first_pivot_col = first_pivot_col,
-      last_pivot_col = last_pivot_col
-      ) %>%
+    wv_pivot_vars_longer() %>%
     left_join(wv_grossrange_table, by = join_by(variable)) %>%
     mutate(
       grossrange_flag = case_when(
@@ -112,8 +105,8 @@ wv_test_grossrange <- function(
     select(-c(gr_max, gr_min, user_max, user_min)) %>%
     pivot_wider(
       names_from = variable,
-      values_from = c(value, grossrange_flag)
-     # names_sort = TRUE
+      values_from = c(value, grossrange_flag),
+      names_sort = TRUE
     )
 
   colnames(dat) <- str_remove_all(colnames(dat), "value_")
@@ -122,25 +115,21 @@ wv_test_grossrange <- function(
     wv_test_grossrange_height_period(
       height_var = "significant_height_m",
       period_var = "peak_period_s"
-     # flag_col = "grossrange_flag_significant_height_m"
     ) %>%
     wv_test_grossrange_height_period(
       height_var = "average_height_largest_33_percent_m",
       period_var = "period_largest_33_percent_s"
-     # flag_col = "grossrange_flag_average_height_largest_33_percent_m"
     ) %>%
     wv_test_grossrange_height_period(
       height_var = "average_height_largest_10_percent_m",
       period_var = "period_largest_10_percent_s"
-    #  flag_col = "grossrange_flag_average_height_largest_10_percent_m"
     ) %>%
     wv_test_grossrange_height_period(
       height_var = "maximum_height_m",
       period_var = "period_maximum_s"
-     # flag_col = "grossrange_flag_maximum_height_m"
     )
 
-  if(isTRUE(return_long_names)) dat <- wv_append_long_variable_names(dat)
+  #if(isTRUE(return_long_names)) dat <- wv_append_long_variable_names(dat)
 
   dat
 }

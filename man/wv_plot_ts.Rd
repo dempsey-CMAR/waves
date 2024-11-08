@@ -6,8 +6,8 @@
 \usage{
 wv_plot_ts(
   dat,
+  vars = NULL,
   pal = NULL,
-  y_axis_label = NULL,
   n_col = 1,
   scales = "fixed",
   show_legend = FALSE
@@ -16,12 +16,11 @@ wv_plot_ts(
 \arguments{
 \item{dat}{Data frame with wave parameter data in wide or long format.}
 
+\item{vars}{Character vector of variables to pivot if \code{dat} is in a wide
+format. Default is all variables.}
+
 \item{pal}{Optional colour palette. Default is the "Dark2" palette from
 \code{Rcolourbrewer}.}
-
-\item{y_axis_label}{Label for the y-axis. Default is "Wave Height (m)" if
-only plotting wave variables and "Wave Period (s)" if only plotting period
-variables.}
 
 \item{n_col}{Number of columns for faceted figure. Default is 1.}
 

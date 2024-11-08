@@ -6,7 +6,7 @@
 \usage{
 wv_plot_flags(
   dat,
-  qc_tests = c("grossrange", "rolling_sd"),
+  qc_tests = c("grossrange", "rolling_sd", "spike", "qc"),
   vars = "all",
   labels = TRUE,
   n_col = NULL,

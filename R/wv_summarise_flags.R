@@ -20,42 +20,25 @@
 
 wv_summarise_flags <- function(dat, ...) {
 
-  qc_summary <- dat %>%
-    group_by(variable) %>%
+  qc_summary <-  dat %>%
+    group_by(variable, ...) %>%
     mutate(n_obs = n()) %>%
     ungroup() %>%
-    group_by(variable, n_obs, grossrange_flag_value) %>%
-    summarise(n_fl = n()) %>%
-    ungroup() %>%
-    mutate(
-      qc_test = "grossrange",
-      flag_value = grossrange_flag_value
+    pivot_longer(
+      cols = contains("_flag_value"),
+      names_to = "qc_test",
+      names_prefix = "_flag_value",
+      values_to = "flag_value"
     ) %>%
-    select(qc_test, n_obs, variable, flag_value, n_fl)
-
-  if("depth_trim_flag" %in% colnames(dat)) {
-
-    depth_qc_summary <- dat %>%
-      distinct(timestamp_utc, sensor_depth_below_surface_m, depth_trim_flag) %>%
-      mutate(n_obs = n()) %>%
-      group_by(n_obs, depth_trim_flag) %>%
-      summarise(n_fl = n()) %>%
-      mutate(
-        qc_test = "depth_trim",
-        variable = "sensor_depth_below_surface_m",
-        flag_value = depth_trim_flag
-      ) %>%
-      ungroup() %>%
-      select(qc_test, n_obs, variable, flag_value, n_fl)
-
-    qc_summary <- qc_summary %>%
-      bind_rows(depth_qc_summary)
-  }
-
-  qc_summary %>%
+    mutate(qc_test = str_remove(qc_test, "_flag_value")) %>%
+    group_by(qc_test, variable, flag_value, ..., n_obs) %>%
+    # don't use "flag" in column name because qc_assign_flag_labels will try to convert, resulting in NA
+    summarise(n_fl  = n()) %>%
+    ungroup() %>%
     mutate(n_percent = round(100 * n_fl / n_obs, digits = 2)) %>%
-    qc_assign_flag_labels()  %>%
+    qc_assign_flag_labels() %>%
     select(-n_obs) %>%
     rename(n_flag = n_fl) %>%
     arrange(qc_test, variable, flag_value)
+
 }

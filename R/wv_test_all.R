@@ -14,6 +14,7 @@
 #'
 #' @inheritParams wv_test_grossrange
 #' @inheritParams wv_test_rolling_sd
+#' @inheritParams wv_test_spike
 #'
 #' @return Returns \code{dat} with additional quality control flag columns.
 #'
@@ -30,17 +31,19 @@ wv_test_all <- function(
 
     wv_grossrange_table = NULL,
     wv_rolling_sd_table = NULL,
+    wv_spike_table = NULL,
 
     period_hours = 24,
     max_interval_hours = 2,
     align_window = "center",
     keep_sd_cols = FALSE,
+    keep_spike_cols = FALSE,
 
     ping = FALSE
 ) {
 
   if (is.null(qc_tests)) {
-    qc_tests <- c("grossrange", "rolling_sd")
+    qc_tests <- c("grossrange", "rolling_sd", "spike")
   }
 
   qc_tests <- tolower(qc_tests)
@@ -106,14 +109,14 @@ wv_test_all <- function(
     )
   }
 
-  # if("spike" %in% qc_tests) {
-  #   dat_out[[5]] <- qc_test_spike(
-  #     dat,
-  #     spike_table = spike_table,
-  #     join_column = join_column_spike,
-  #     keep_spike_cols = keep_spike_cols
-  #   )
-  # }
+  if("spike" %in% qc_tests) {
+    dat_out[[3]] <- wv_test_spike(
+      dat,
+      county = county,
+      wv_spike_table = wv_spike_table,
+      keep_spike_cols = keep_spike_cols
+    )
+  }
 
   # remove empty list elements
   dat_out <- Filter(Negate(is.null), dat_out)

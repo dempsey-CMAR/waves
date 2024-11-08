@@ -33,7 +33,7 @@ dat_raw <- wv_read_txt(path, "2022-09-29_western_shoal_test_data.txt") %>%
     ))
 
 gr_thresholds <- wv_thresholds %>%
-  filter(qc_test == "grossrange", county == "Yarmouth" | is.na(county)) %>%
+  filter(qc_test == "grossrange", county == "Halifax" | is.na(county)) %>%
   select(-c(qc_test, county)) %>%
   pivot_wider(values_from = "threshold_value", names_from = "threshold") %>%
   group_by(variable) %>%
@@ -50,7 +50,7 @@ dat_raw[nrow(dat_raw) - 1, "sensor_depth_below_surface_m"] <- 13.5
 dat_raw[nrow(dat_raw), "sensor_depth_below_surface_m"] <- 15
 
 dat_raw <- dat_raw %>%
-  wv_pivot_vars_longer(first_pivot_col = 2)
+  wv_pivot_vars_longer()
 
 #dat_raw %>%
 #  wv_plot_ts(scales = "free_y", n_col = 2)
@@ -64,6 +64,7 @@ dat <- dat_raw %>%
     # Flag 4 (low)
     value = case_when(
       # these ones should NOT be flagged
+      day_utc == 1 & variable == "sea_water_speed_m_s" ~ 0.2,
       day_utc == 1 & variable == "significant_height_m" ~ 0,
 
       day_utc == 2 & variable == "significant_height_m" ~ 0,
@@ -82,12 +83,13 @@ dat <- dat_raw %>%
       day_utc == 2 & variable %in% c(
         "to_direction_degree",
         "sea_water_speed_m_s",
-        "sea_water_to_direction_degree"
+        "sea_water_to_direction_degree",
+        "sensor_depth_below_surface_m"
       ) ~ gr_min - 2,
       # Flag 3 (low)
       # right now all gr_min thresholds = user_min thresholds, so these should
       # actually be flagged as 4
-      day_utc == 4 ~ user_min,
+      day_utc == 4 ~ user_min - 1,
       # Flag 4 high
       day_utc == 6 ~ gr_max + 2,
       # Flag 3 high
@@ -98,8 +100,8 @@ dat <- dat_raw %>%
   select(-c(contains("gr_"), contains("user_"), suspect_high, pass)) %>%
   pivot_wider(names_from = variable, values_from = value)
 
-dat %>%
-  wv_pivot_vars_longer(first_pivot_col = 3) %>%
+p <- dat %>%
+  wv_pivot_vars_longer() %>%
   wv_plot_ts(scales = "free_y", n_col = 2)
 
 # Export rds file

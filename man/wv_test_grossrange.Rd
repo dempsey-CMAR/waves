@@ -4,13 +4,7 @@
 \alias{wv_test_grossrange}
 \title{Apply grossrange test to wave variables}
 \usage{
-wv_test_grossrange(
-  dat,
-  wv_grossrange_table = NULL,
-  county = NULL,
-  vars = NULL,
-  return_long_names = FALSE
-)
+wv_test_grossrange(dat, wv_grossrange_table = NULL, county = NULL, vars = NULL)
 }
 \arguments{
 \item{dat}{Data frame of wave variables in wide format.}
@@ -26,9 +20,6 @@ was collected. Used to filter the default \code{wv_grossrange_table}.}
 
 \item{vars}{Vector of character strings indicating which columns to pivot.
 Default is all variables (with column names in the "short" format).}
-
-\item{return_long_names}{Logical argument indicating whether to return the CF
-variable names (long names) or the short variable names.}
 }
 \value{
 Returns \code{dat} with an additional grossrange_flag column for each

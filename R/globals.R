@@ -44,9 +44,10 @@ utils::globalVariables(c(
   #  wv_plot_ts
   "variable",
   "variable_title",
+  "variable_label",
   "value",
   "timestamp_utc",
-  "x",
+ # "x",
 
   # wv_test_grossrange
   "height_m",
@@ -61,25 +62,50 @@ utils::globalVariables(c(
 
   "wv_thresholds",
 
+  # wv_test_rolling_sd
+  "station",
+  "deployment_id",
+  "int_sample",
+  "n_sample_effective",
+  "sd_roll",
+  "rolling_sd_flag",
+  "rolling_sd_max",
+  "n_sample",
+
   # adjust_variable_names
   "column_names",
   ".",
 
   #wv_test_rate_of_change
   "depth_diff",
-  "depth_trim_flag",
-  #"rate_of_change_flag",
-  #"rate_of_change_flag_sensor_depth_below_surface_m",
+  #"depth_trim_flag",
+
   "sensor_depth_below_surface_m",
 
+  # wv_start_end_obs_to_trim
+  "trim_obs",
+  "group",
+
   # wv_plot_depth_flags
-  "depth_flag",
+  #"depth_flag",
 
   # wv_summarise_flags
   "flag_value",
   "grossrange_flag_value",
   "n_fl",
   "n_obs",
-  "qc_test"
+  "qc_test",
+
+  # wv_test_spike
+  "lag_value",
+  "lead_value",
+  "spike_flag",
+  "spike_high",
+  "spike_low",
+  "spike_ref",
+  "spike_value",
+
+  # wv_assign_max_flag
+  "qc_col"
 
 ))

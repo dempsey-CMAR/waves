@@ -73,21 +73,53 @@ wv_append_long_variable_names <- function(dat) {
         str_remove(column_names, "sea_surface_wave_"), column_names
       ),
 
-      # remove sea_surface_wave_ from beginning of grossrange flag cols
+      # remove sea_surface_wave_ from beginning of flag cols
       column_names = if_else(
-        str_detect(column_names, "grossrange_flag"),
+        str_detect(column_names, "grossrange_flag|rolling_sd_flag|spike|qc"),
         str_remove(column_names, "sea_surface_wave_"), column_names
       ),
 
-      # add sea_surface_wave_ to correct spot for grossrange flag vars
-      column_names = if_else(
-        str_detect(column_names, "grossrange_flag"),
-        str_replace(
-          column_names,
-          "grossrange_flag_",
-          "grossrange_flag_sea_surface_wave_"
-        ),
-        column_names
+      # add sea_surface_wave_ to correct spot for flag vars
+      # column_names = if_else(
+      #   str_detect(column_names, "grossrange_flag"),
+      #   str_replace(
+      #     column_names,
+      #     "grossrange_flag_",
+      #     "grossrange_flag_sea_surface_wave_"
+      #   ),
+      #   column_names
+      # ),
+
+      column_names = case_when(
+        str_detect(column_names, "grossrange_flag") ~
+          str_replace(
+            column_names,
+            "grossrange_flag_",
+            "grossrange_flag_sea_surface_wave_"
+          ),
+
+        str_detect(column_names, "rolling_sd_flag") ~
+          str_replace(
+            column_names,
+            "rolling_sd_flag_",
+            "rolling_sd_flag_sea_surface_wave_"
+          ),
+
+        str_detect(column_names, "spike_flag") ~
+          str_replace(
+            column_names,
+            "spike_flag_",
+            "spike_flag_sea_surface_wave_"
+          ),
+
+        str_detect(column_names, "qc_flag") ~
+          str_replace(
+            column_names,
+            "qc_flag_",
+            "qc_flag_sea_surface_wave_"
+          ),
+
+        TRUE ~ column_names
       )
     )
 

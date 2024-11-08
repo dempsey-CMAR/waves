@@ -33,7 +33,7 @@
 
 wv_plot_flags <- function(
     dat,
-    qc_tests = c("grossrange", "rolling_sd", "spike"),
+    qc_tests = c("grossrange", "rolling_sd", "spike", "qc"),
     vars = "all",
     labels = TRUE,
     n_col = NULL,
@@ -44,8 +44,7 @@ wv_plot_flags <- function(
   p_out <- list()
 
   if (!("variable" %in% colnames(dat))) {
-    dat <- wv_pivot_vars_longer(dat) %>%
-      wv_pivot_flags_longer(qc_tests = qc_tests)
+    dat <- wv_pivot_flags_longer(dat, qc_tests = qc_tests)
   }
 
   if (vars == "all") vars <- unique(dat$variable)
@@ -62,7 +61,8 @@ wv_plot_flags <- function(
       dat,
       qc_test = qc_test_j,
       n_col = n_col,
-      plotly_friendly = plotly_friendly
+      plotly_friendly = plotly_friendly,
+      flag_title = flag_title
     )
   }
 
@@ -90,7 +90,6 @@ wv_plot_flags <- function(
 #'   scale_y_continuous theme_light theme
 #'
 #' @importFrom gtools mixedsort
-
 
 wv_ggplot_flags <- function(
     dat,
@@ -123,7 +122,7 @@ wv_ggplot_flags <- function(
     p <- p + guides(color = guide_legend(override.aes = list(size = 4)))
   }
 
-  if (isTRUE(flag_title)) p + ggtitle(paste0(qc_test, " test"))
+  if(isTRUE(flag_title)) p <- p + ggtitle(paste0(qc_test, " test"))
 
   p
 }
