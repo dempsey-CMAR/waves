@@ -38,6 +38,7 @@ wv_plot_histogram <- function(
   # this will pivot longer if required
   dat <- dat %>%
     wv_convert_vars_to_title()
+  # dat <- dat %>% wv_create_variable_labels()
 
   vars <- distinct(dat, variable)$variable
 
@@ -55,32 +56,21 @@ wv_plot_histogram <- function(
     }
   }
 
-  if(is.null(x_axis_label)) {
-    if (all(str_detect(vars, "height"))) {
-      x_axis_label <- "Wave Height (m)"
-    } else if (all(str_detect(vars, "period"))) {
-      x_axis_label <- "Wave Period (s)"
-    } else x_axis_label <- waiver()
-  }
+  # if(is.null(x_axis_label)) {
+  #   if (all(str_detect(vars, "height"))) {
+  #     x_axis_label <- "Wave Height (m)"
+  #   } else if (all(str_detect(vars, "period"))) {
+  #     x_axis_label <- "Wave Period (s)"
+  #   } else x_axis_label <- waiver()
+  # }
 
   p <- ggplot(dat, aes(value, fill = variable)) +
-    geom_histogram(
-      aes(
-        # y = 100 * after_stat(count / sum(count)),
-        # text = after_stat(
-        #   paste(
-        #     "percent:", round(100 * after_stat(count / sum(count)), digits = 2),
-        #     "\nbin:", x)
-        #  )
-      ),
-      binwidth = binwidth, col = bar_outline
-    ) +
+    geom_histogram(binwidth = binwidth, col = bar_outline) +
     scale_y_continuous(
       "Number of Observations", expand = expansion(mult = c(0, 0.1))
     ) +
     scale_x_continuous(x_axis_label) +
     scale_fill_manual("", values = pal) +
-
     theme_light() +
     theme(
       strip.placement = "outside",
