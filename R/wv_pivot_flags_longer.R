@@ -23,8 +23,8 @@ wv_pivot_flags_longer <- function(dat, qc_tests = NULL, vars = NULL) {
     qc_tests <- c(
       "grossrange",
       "rolling_sd",
-      "spike"
-   #  "qc"
+      "spike",
+      "qc"
     )
   }
 
@@ -47,13 +47,9 @@ wv_pivot_flags_longer <- function(dat, qc_tests = NULL, vars = NULL) {
     dat <- wv_pivot_single_test_longer(dat, qc_test = "spike")
   }
 
-  # if ("spike" %in% qc_tests) {
-  #   dat <- pivot_flags_longer(dat, qc_test = "spike")
-  # }
-  #
-  # if ("qc" %in% qc_tests) {
-  #   dat <- pivot_flags_longer(dat, qc_test = "qc")
-  # }
+  if ("qc" %in% qc_tests) {
+    dat <- wv_pivot_single_test_longer(dat, qc_test = "qc")
+  }
 
   # #don't need to pivot this test rn
   # if ("human_in_loop" %in% qc_tests) {
