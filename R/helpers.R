@@ -1,4 +1,4 @@
-#' Extract deployment date and station name from file path
+#' Extract deployment date and station name from path of original text file
 #'
 #' @param file_path Path to the file, include file name and extension (.csv or
 #'   .txt). File name must include the deployment date and the station name,
@@ -23,6 +23,33 @@ wv_extract_deployment_info <- function(file_path) {
       depl_date= as_date(depl_date)
     )
 }
+
+#' Extract deployment date and station name from compiled rds file
+#'
+#' @param file_path Path to the file, include file name and extension (.rds).
+#'   File name must include the deployment date, the station name, and the
+#'   deployment id separated by "_", e.g., "2008-09-25_Coffin Island SW_QN004"
+#'
+#' @return Returns a tibble with three columns: \code{depl_date},
+#'   \code{station}, and \code{deployment_id}.
+#'
+#' @importFrom dplyr %>%  mutate
+#' @importFrom lubridate as_date
+#' @importFrom stringr str_replace_all
+#' @importFrom tidyr separate
+#'
+#' @export
+
+wv_extract_deployment_info2 <- function(file_path) {
+  sub(".*/", "", file_path, perl = TRUE) %>%
+    data.frame() %>%
+    separate(
+      col = ".", into = c("depl_date", "station", "deployment_id"), sep = "_"
+    ) %>%
+    mutate(deployment_id = str_remove(deployment_id, pattern = ".rds"))
+}
+
+
 
 #' Set histogram bin width for different variables
 #'

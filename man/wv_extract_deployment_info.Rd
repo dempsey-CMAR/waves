@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpers.R
 \name{wv_extract_deployment_info}
 \alias{wv_extract_deployment_info}
-\title{Extract deployment date and station name from file path}
+\title{Extract deployment date and station name from path of original text file}
 \usage{
 wv_extract_deployment_info(file_path)
 }
@@ -16,5 +16,5 @@ Returns a tibble with two columns: \code{depl_date}, and
   \code{station}.
 }
 \description{
-Extract deployment date and station name from file path
+Extract deployment date and station name from path of original text file
 }
