@@ -16,7 +16,7 @@
 #'
 #' @importFrom dplyr mutate select
 #' @importFrom officer fp_border
-#' @importFrom  flextable delete_part vline border_outer border_inner_h
+#' @importFrom  flextable bg delete_part vline border_outer border_inner_h
 #'   border_inner_v bold font fontsize autofit fit_to_width
 #'
 #' @export
@@ -44,6 +44,8 @@ wv_format_report_table <- function(report_table, transpose = TRUE) {
 
   # set border style
   small_border <- officer::fp_border(color = "gray", width = 1)
+  #  grey_rows <- seq(2, length(report_table$body$content$content$keys), 2)
+  #  grey_rows <- seq(2, report_table$body$content$content$ncol, 2)
 
   # format table
   report_table %>%
@@ -52,6 +54,9 @@ wv_format_report_table <- function(report_table, transpose = TRUE) {
     flextable::border_outer(part = "all", border = small_border) %>%
     flextable::border_inner_h(part = "all", border = small_border) %>%
     flextable::border_inner_v(part = "all", border = small_border) %>%
+    # fill
+    flextable::bg(part = "all", i = c(2, 4, 6, 8, 10), bg = "grey90") %>%
+    # flextable::bg(part = "all", i = grey_rows, bg = "grey90") %>%
     # font
     flextable::font(part = "all", fontname = "ebrima") %>%
     flextable::fontsize(size = 10, part = "all") %>%
