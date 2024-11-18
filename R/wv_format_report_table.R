@@ -44,23 +44,43 @@ wv_format_report_table <- function(report_table, transpose = TRUE) {
 
   # set border style
   small_border <- officer::fp_border(color = "gray", width = 1)
-  #  grey_rows <- seq(2, length(report_table$body$content$content$keys), 2)
-  #  grey_rows <- seq(2, report_table$body$content$content$ncol, 2)
 
   # format table
-  report_table %>%
+  report_table <- report_table %>%
+    # header (if it exists)
+    flextable::bg(part = "header", bg = "#335B74") %>%
+    flextable::color(part = "header", color = "white") %>%
     # borders
     flextable::vline(border = small_border, part = "all") %>%
     flextable::border_outer(part = "all", border = small_border) %>%
     flextable::border_inner_h(part = "all", border = small_border) %>%
     flextable::border_inner_v(part = "all", border = small_border) %>%
-    # fill
-    flextable::bg(part = "all", i = c(2, 4, 6, 8, 10), bg = "grey90") %>%
-    # flextable::bg(part = "all", i = grey_rows, bg = "grey90") %>%
     # font
     flextable::font(part = "all", fontname = "ebrima") %>%
     flextable::fontsize(size = 10, part = "all") %>%
     # fit
     flextable::autofit() %>%
     flextable::fit_to_width(7.5)
+
+
+  if(report_table$body$content$content$nrow == 2) {
+    report_table <- report_table %>%
+      flextable::bg(part = "all", i = 2, bg = "grey90")
+  }
+  if(report_table$body$content$content$nrow == 3) {
+    report_table <- report_table %>%
+      flextable::bg(part = "all", i = 2, bg = "grey90")
+  }
+  if(report_table$body$content$content$nrow == 4) {
+    report_table <- report_table %>%
+      flextable::bg(part = "all", i = c(2, 4), bg = "grey90")
+  }
+
+  if(report_table$body$content$content$nrow >= 10) {
+    report_table <- report_table %>%
+      flextable::bg(part = "all", i = c(2, 4, 6, 8, 10), bg = "grey90")
+  }
+
+  report_table
+
 }
