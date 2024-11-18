@@ -67,11 +67,11 @@ wv_append_long_variable_names <- function(dat) {
         paste0("sea_surface_wave_", column_names), column_names
       ),
 
-      # remove sea_surface_wave_ from beginning of current direction col
-      column_names = if_else(
-        str_detect(column_names, "sea_surface_wave_sea_water_to_direction_degree"),
-        str_remove(column_names, "sea_surface_wave_"), column_names
-      ),
+      # # remove sea_surface_wave_ from beginning of current direction col
+      # column_names = if_else(
+      #   str_detect(column_names, "sea_surface_wave_sea_water_to_direction_degree"),
+      #   str_remove(column_names, "sea_surface_wave_"), column_names
+      # ),
 
       # remove sea_surface_wave_ from beginning of flag cols
       column_names = if_else(
@@ -79,40 +79,34 @@ wv_append_long_variable_names <- function(dat) {
         str_remove(column_names, "sea_surface_wave_"), column_names
       ),
 
-      # add sea_surface_wave_ to correct spot for flag vars
-      # column_names = if_else(
-      #   str_detect(column_names, "grossrange_flag"),
-      #   str_replace(
-      #     column_names,
-      #     "grossrange_flag_",
-      #     "grossrange_flag_sea_surface_wave_"
-      #   ),
-      #   column_names
-      # ),
-
+      # add sea_surface_wave_ to correct spot for qc columns
       column_names = case_when(
-        str_detect(column_names, "grossrange_flag") ~
+        str_detect(column_names, "grossrange_flag") &
+          str_detect(column_names, "height|period|to_direction") ~
           str_replace(
             column_names,
             "grossrange_flag_",
             "grossrange_flag_sea_surface_wave_"
           ),
 
-        str_detect(column_names, "rolling_sd_flag") ~
+        str_detect(column_names, "rolling_sd_flag") &
+          str_detect(column_names, "height|period|to_direction") ~
           str_replace(
             column_names,
             "rolling_sd_flag_",
             "rolling_sd_flag_sea_surface_wave_"
           ),
 
-        str_detect(column_names, "spike_flag") ~
+        str_detect(column_names, "spike_flag") &
+          str_detect(column_names, "height|period|to_direction") ~
           str_replace(
             column_names,
             "spike_flag_",
             "spike_flag_sea_surface_wave_"
           ),
 
-        str_detect(column_names, "qc_flag") ~
+        str_detect(column_names, "qc_flag") &
+          str_detect(column_names, "height|period|to_direction")~
           str_replace(
             column_names,
             "qc_flag_",
@@ -120,7 +114,13 @@ wv_append_long_variable_names <- function(dat) {
           ),
 
         TRUE ~ column_names
-      )
+      ),
+
+      # remove sea_surface_wave_ from of current direction col
+      column_names = if_else(
+        str_detect(column_names, "sea_surface_wave_sea_water_to_direction_degree"),
+        str_remove(column_names, "sea_surface_wave_"), column_names
+      ),
     )
 
   colnames(dat) <- new_colnames$column_names
