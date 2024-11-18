@@ -40,6 +40,7 @@ utils::globalVariables(c(
   "Depth",
   "CM",
   "CD",
+  "station_deployment_id",
 
   #  wv_plot_ts
   "variable",

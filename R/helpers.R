@@ -35,7 +35,7 @@ wv_extract_deployment_info <- function(file_path) {
 #'
 #' @importFrom dplyr %>%  mutate
 #' @importFrom lubridate as_date
-#' @importFrom stringr str_replace_all
+#' @importFrom stringr str_remove str_replace_all str_trim
 #' @importFrom tidyr separate
 #'
 #' @export
@@ -44,11 +44,23 @@ wv_extract_deployment_info2 <- function(file_path) {
   sub(".*/", "", file_path, perl = TRUE) %>%
     data.frame() %>%
     separate(
-      col = ".", into = c("depl_date", "station", "deployment_id"), sep = "_"
+      col = ".", into = c("depl_date", "station_deployment_id"), sep = 11
     ) %>%
-    mutate(deployment_id = str_remove(deployment_id, pattern = ".rds"))
+    mutate(
+      depl_date = str_remove(depl_date, pattern = "_"),
+      station_deployment_id = str_remove(station_deployment_id, pattern = ".rds")
+    ) %>%
+    separate(
+      col = "station_deployment_id",
+      into = c("station", "deployment_id"), sep = -5
+    ) %>%
+    mutate(
+      # replace first _ with space (for station names with 2 words)
+      station = str_replace_all(station, pattern = "_", " "),
+      # trim trailing space
+      station = str_trim(station, side = "right")
+    )
 }
-
 
 
 #' Set histogram bin width for different variables
