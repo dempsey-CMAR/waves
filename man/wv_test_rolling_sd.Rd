@@ -19,12 +19,12 @@ wv_test_rolling_sd(
 \item{dat}{Data frame of wave data in wide format.}
 
 \item{wv_rolling_sd_table}{Data frame with at least two columns:
-  \code{variable}: must match the names of the variables being tested in
-  \code{dat}. \code{rolling_sd_max}: maximum accepted value for the rolling
-  standard deviation.
+\code{variable}: must match the names of the variables being tested in
+\code{dat}. \code{rolling_sd_max}: maximum accepted value for the rolling
+standard deviation.
 
-  Default values are used if \code{rolling_sd_table = NULL}. To see the
-  default \code{rolling_sd_table}, type \code{subset(wv_thresholds,
+Default values are used if \code{rolling_sd_table = NULL}. To see the
+default \code{rolling_sd_table}, type \code{subset(wv_thresholds,
   qc_test == "rolling_sd")} in the console.}
 
 \item{county}{Character string indicating the county from which \code{dat}
@@ -56,25 +56,23 @@ and \code{sd_roll}) are returned in \code{dat}. Default is \code{FALSE}.}
 }
 \value{
 Returns \code{dat} in a wide format, with rolling standard deviation
-  flag columns for each variable in the form "rolling_sd_flag_variable".
+flag columns for each variable in the form "rolling_sd_flag_variable".
 }
 \description{
 The rolling standard deviation is calculated using the following algorithm:
 }
 \details{
-1. Calculate the interval between the current and previous observation
+\enumerate{
+\item Calculate the interval between the current and previous observation
 (\code{int_sample}; in minutes).
-
-2. Determine the number of samples in the specified time frame
+\item Determine the number of samples in the specified time frame
 (\code{n_sample = round((60 / int_sample) * period_hours)})
-
-3. If \code{int_sample} is really large (> \code{max_interval_hours}), then
+\item If \code{int_sample} is really large (> \code{max_interval_hours}), then
 set the effective sample number (\code{n_sample_effective}) to 0.
-
-4. Calculate the rolling standard deviation, with the width =
+\item Calculate the rolling standard deviation, with the width =
 \code{n_sample_effective} and alignment specified by \code{align_window}.
 \code{sd_roll} is rounded to 2 decimal places.
-
+}
 
 When int_sample = period_hours, n_sample = 1, so sd_roll = NA.
 }

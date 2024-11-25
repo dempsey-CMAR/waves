@@ -11,7 +11,7 @@ wv_get_bin_width(var_to_bin)
 }
 \value{
 Returns a number that will generate useful histogram for
-  \code{var_to_bin}.
+\code{var_to_bin}.
 }
 \description{
 Set histogram bin width for different variables

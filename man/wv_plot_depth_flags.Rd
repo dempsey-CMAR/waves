@@ -16,7 +16,7 @@ plotted when \code{plotly::ggplotly} is called on \code{p}. Default is
 }
 \value{
 ggplot object. Figure shows sensor_depth_below_surface_m over time,
-  coloured by the \code{depth_flag} column.
+coloured by the \code{depth_flag} column.
 }
 \description{
 Plot sensor_depth_below_surface_m coloured by roc flag.

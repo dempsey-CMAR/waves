@@ -28,13 +28,13 @@ Height (m)".}
 }
 \value{
 Returns an "openair" object, a rose plot of current speed and
-  direction.
+direction.
 }
 \description{
 Generate current rose
 }
 \details{
 Generates a wave height rose using the \code{windRose()} function
-  from the \code{openair} package. See help files for
-  \code{openair::windRose} for more detail.
+from the \code{openair} package. See help files for
+\code{openair::windRose} for more detail.
 }

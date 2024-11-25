@@ -16,7 +16,7 @@ Default is \code{TRUE}.}
 }
 \value{
 Returns \code{dat} with an additional \code{variable_label} column
-  for use in faceted figures.
+for use in faceted figures.
 }
 \description{
 Add a column of axis labels for wave variables

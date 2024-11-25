@@ -18,13 +18,13 @@ wv_test_spike(
 was collected. Used to filter the default \code{wv_spike_table}.}
 
 \item{wv_spike_table}{Data frame with at least 3 columns: \code{variable}:
-  should match the names of the variables being tested in \code{dat}.
-  \code{spike_low}: maximum acceptable spike value to "Pass", and
-  \code{spike_high}: maximum acceptable value to be flagged "Suspect/Of
-  Interest".
+should match the names of the variables being tested in \code{dat}.
+\code{spike_low}: maximum acceptable spike value to "Pass", and
+\code{spike_high}: maximum acceptable value to be flagged "Suspect/Of
+Interest".
 
-  Default values are used if \code{wv_spike_table = NULL}. To see the
-  default \code{wv_spike_table}, type \code{subset(wv_thresholds,
+Default values are used if \code{wv_spike_table = NULL}. To see the
+default \code{wv_spike_table}, type \code{subset(wv_thresholds,
   qc_test == "spike")} in the console.}
 
 \item{keep_spike_cols}{Logical value. If \code{TRUE}, the columns used to
@@ -33,7 +33,7 @@ produce the spike value are returned in \code{dat}. Default is
 }
 \value{
 Returns \code{dat} in a wide format, with spike flag columns for each
-  variable in the form "spike_flag_variable".
+variable in the form "spike_flag_variable".
 }
 \description{
 Apply the spike test to wave parameters

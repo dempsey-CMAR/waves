@@ -41,6 +41,6 @@ For the variables calculated from frequency (significant_height_m,
 peak_period_s), wave height of 0 m more often corresponds to a non-zero
 frequency.
 
-Wave height parameters are flagged as "Fail" if the wave height is 0 m *and*
+Wave height parameters are flagged as "Fail" if the wave height is 0 m \emph{and}
 the period is <= 0 s. All other variables are flagged as "Pass".
 }

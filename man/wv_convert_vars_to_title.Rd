@@ -16,7 +16,7 @@ Default is \code{TRUE}.}
 }
 \value{
 Returns \code{dat} with an additional \code{variable_title} column
-  for use in faceted figures.
+for use in faceted figures.
 }
 \description{
 Add a column of wave variables in title case
