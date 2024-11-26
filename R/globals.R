@@ -22,6 +22,9 @@ utils::globalVariables(c(
   "Depl_Duration",
   "Depl_Sounding",
   "Depth Sounding (m)",
+  "Averaging Intervals (s)",
+  "Ensemble Intervals (s)",
+  "Pings per Ensemble",
 
   # format_report_table
   "Record",
@@ -107,6 +110,11 @@ utils::globalVariables(c(
   "spike_value",
 
   # wv_assign_max_flag
-  "qc_col"
+  "qc_col",
+
+ # wv_compile_deployment_info
+ "County",
+ "Lease#",
+ "Waterbody"
 
 ))

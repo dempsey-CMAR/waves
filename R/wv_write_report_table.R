@@ -27,6 +27,21 @@ wv_write_report_table <- function(metadata) {
       `Depth Sounding (m)` = as.character(`Depth Sounding (m)`),
       `Depth Sounding (m)` = if_else(
         is.na(`Depth Sounding (m)`), "Not recorded", `Depth Sounding (m)`
+      ),
+
+      `Ensemble Intervals (s)` = as.character(`Ensemble Intervals (s)`),
+      `Ensemble Intervals (s)` = if_else(
+        is.na(`Ensemble Intervals (s)`), "Not recorded", `Ensemble Intervals (s)`
+      ),
+
+      `Averaging Intervals (s)` = as.character(`Averaging Intervals (s)`),
+      `Averaging Intervals (s)` = if_else(
+        is.na(`Averaging Intervals (s)`), "Not recorded", `Averaging Intervals (s)`
+      ),
+
+      `Pings per Ensemble` = as.character(`Pings per Ensemble`),
+      `Pings per Ensemble` = if_else(
+        is.na(`Pings per Ensemble`), "Not recorded", `Pings per Ensemble`
       )
     )
 }
