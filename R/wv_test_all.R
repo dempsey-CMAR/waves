@@ -4,7 +4,7 @@
 #'
 #' @param qc_tests Character vector of quality control tests to apply to
 #'   \code{dat}. Defaults to all available tests: \code{qc_tests =
-#'   c("grossrange", "rolling_sd")}.
+#'   c("grossrange", "rolling_sd", "spike")}.
 #'
 #' @param ping Logical argument. If \code{TRUE}, a "ping" sound will be played
 #'   when the function has completed. If function is run several times in quick
@@ -71,22 +71,6 @@ wv_test_all <- function(
   # apply tests
   dat_out <- list()
 
-  # if ("climatology" %in% qc_tests) {
-  #   dat_out[[1]] <- qc_test_climatology(
-  #     dat,
-  #     climatology_table = climatology_table,
-  #     county = county,
-  #     join_column = join_column
-  #   )
-  # }
-
-  # if ("depth_crosscheck" %in% qc_tests) {
-  #   dat_out[[2]] <- qc_test_depth_crosscheck(
-  #     dat,
-  #     depth_table = depth_table,
-  #     county = county
-  #   )
-  # }
 
   if ("grossrange" %in% qc_tests) {
     dat_out[[1]] <- wv_test_grossrange(
