@@ -14,7 +14,7 @@ in a long format and flags in wide format.}
 }
 \value{
 Returns \code{dat_wide} with the qc_test flag columns pivoted to a
-long format.
+  long format.
 }
 \description{
 Complete pivot_longer of flagged wave data

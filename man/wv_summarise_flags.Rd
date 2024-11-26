@@ -16,8 +16,8 @@ use as grouping variables.}
 }
 \value{
 Returns a data frame with the number and percent of observations
-assigned each flag value for each variable, qc_test, and groups in
-\code{...}.
+  assigned each flag value for each variable, qc_test, and groups in
+  \code{...}.
 }
 \description{
 Generate summary table of flags

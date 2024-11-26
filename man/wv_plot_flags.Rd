@@ -38,9 +38,9 @@ plotted when \code{plotly::ggplotly} is called on \code{p}. Default is
 }
 \value{
 Returns a list of ggplot objects; one figure for each test in
-\code{qc_tests} and variable in \code{vars}. Points are coloured by the
-flag value and panels are faceted by depth and sensor. faceted by depth and
-sensor.
+  \code{qc_tests} and variable in \code{vars}. Points are coloured by the
+  flag value and panels are faceted by depth and sensor. faceted by depth and
+  sensor.
 }
 \description{
 Plot wave data coloured by flag value

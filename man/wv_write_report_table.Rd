@@ -11,7 +11,7 @@ wv_write_report_table(metadata)
 }
 \value{
 Returns a tibble with three columns: \code{DEPLOYMENT},
-\code{Depl_Date}, and \code{Station_Name}.
+  \code{Depl_Date}, and \code{Station_Name}.
 }
 \description{
 Writes deployment table for summary report

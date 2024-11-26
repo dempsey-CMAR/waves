@@ -29,8 +29,8 @@ plotted when \code{plotly::ggplotly} is called on \code{p}. Default is
 }
 \value{
 Returns a ggplot object; a figure for \code{qc_test}.
-Points are coloured by the flag value and panels are faceted by depth and
-sensor.
+  Points are coloured by the flag value and panels are faceted by depth and
+  sensor.
 }
 \description{
 Create ggplot for one wave qc_test and variable

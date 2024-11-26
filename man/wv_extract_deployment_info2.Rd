@@ -13,7 +13,7 @@ deployment id separated by "_", e.g., "2008-09-25_Coffin Island SW_QN004"}
 }
 \value{
 Returns a tibble with three columns: \code{depl_date},
-\code{station}, and \code{deployment_id}.
+  \code{station}, and \code{deployment_id}.
 }
 \description{
 Extract deployment date and station name from compiled rds file

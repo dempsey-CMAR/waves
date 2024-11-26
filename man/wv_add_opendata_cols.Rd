@@ -36,7 +36,7 @@ argument is specified.}
 }
 \value{
 Returns \code{dat} with columns deployment_id, county, waterbody, and
-station.
+  station.
 }
 \description{
 Add deployment_id, county, waterbody, and station columns

@@ -19,8 +19,8 @@ sensor_depth_below_surface_m).}
 }
 \value{
 Returns \code{dat} with the flag column
-\code{trim_flag_sensor_depth_below_surface_m} (and optionally
-\code{depth_diff}.
+  \code{trim_flag_sensor_depth_below_surface_m} (and optionally
+  \code{depth_diff}.
 }
 \description{
 A change in \code{sensor_depth_below_surface_m} greater than

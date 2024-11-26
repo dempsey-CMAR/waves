@@ -13,7 +13,7 @@ separated by " - ", e.g., "2008.09.25 - Coffin Island SW - Waves.txt"}
 }
 \value{
 Returns a tibble with two columns: \code{depl_date}, and
-\code{station}.
+  \code{station}.
 }
 \description{
 Extract deployment date and station name from path of original text file

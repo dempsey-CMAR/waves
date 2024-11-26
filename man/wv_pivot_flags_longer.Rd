@@ -18,7 +18,7 @@ required if variables in \code{dat} are in a wide format.}
 }
 \value{
 Returns \code{dat_wide}, with variables and flags pivoted to a long
-format.
+  format.
 }
 \description{
 Pivot flagged wave data longer by variable

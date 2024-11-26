@@ -18,9 +18,9 @@ table.}
 }
 \value{
 Returns a flextable object that will render nicely in the Word
-report. A table with two columns: the first column (bold) is the column
-names of \code{report_table}; the second column is the corresponding
-entries in \code{report_table}.
+  report. A table with two columns: the first column (bold) is the column
+  names of \code{report_table}; the second column is the corresponding
+  entries in \code{report_table}.
 }
 \description{
 Formats tables for summary report

@@ -20,7 +20,7 @@ returned. Default is \code{TRUE}.}
 }
 \value{
 Returns \code{dat} in a wide format, with a single flag column for
-each variable column.
+  each variable column.
 }
 \description{
 Assign each observation the maximum flag from applied QC tests.

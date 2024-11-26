@@ -24,7 +24,7 @@ wv_test_all(
 
 \item{qc_tests}{Character vector of quality control tests to apply to
 \code{dat}. Defaults to all available tests: \code{qc_tests =
-  c("grossrange", "rolling_sd", "spike")}.}
+c("grossrange", "rolling_sd", "spike")}.}
 
 \item{county}{Character string indicating the county from which \code{dat}
 was collected. Used to filter the default \code{wv_grossrange_table}.}
@@ -36,22 +36,22 @@ maximum accepted value ; \code{user_min}: minimum reasonable value;
 \code{user_max}: maximum reasonable value.}
 
 \item{wv_rolling_sd_table}{Data frame with at least two columns:
-\code{variable}: must match the names of the variables being tested in
-\code{dat}. \code{rolling_sd_max}: maximum accepted value for the rolling
-standard deviation.
+  \code{variable}: must match the names of the variables being tested in
+  \code{dat}. \code{rolling_sd_max}: maximum accepted value for the rolling
+  standard deviation.
 
-Default values are used if \code{rolling_sd_table = NULL}. To see the
-default \code{rolling_sd_table}, type \code{subset(wv_thresholds,
+  Default values are used if \code{rolling_sd_table = NULL}. To see the
+  default \code{rolling_sd_table}, type \code{subset(wv_thresholds,
   qc_test == "rolling_sd")} in the console.}
 
 \item{wv_spike_table}{Data frame with at least 3 columns: \code{variable}:
-should match the names of the variables being tested in \code{dat}.
-\code{spike_low}: maximum acceptable spike value to "Pass", and
-\code{spike_high}: maximum acceptable value to be flagged "Suspect/Of
-Interest".
+  should match the names of the variables being tested in \code{dat}.
+  \code{spike_low}: maximum acceptable spike value to "Pass", and
+  \code{spike_high}: maximum acceptable value to be flagged "Suspect/Of
+  Interest".
 
-Default values are used if \code{wv_spike_table = NULL}. To see the
-default \code{wv_spike_table}, type \code{subset(wv_thresholds,
+  Default values are used if \code{wv_spike_table = NULL}. To see the
+  default \code{wv_spike_table}, type \code{subset(wv_thresholds,
   qc_test == "spike")} in the console.}
 
 \item{period_hours}{Length of a full cycle in hours. Default assumes a daily
