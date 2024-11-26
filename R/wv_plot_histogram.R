@@ -37,34 +37,20 @@ wv_plot_histogram <- function(
 
   # this will pivot longer if required
   dat <- dat %>%
-    wv_convert_vars_to_title()
-  # dat <- dat %>% wv_create_variable_labels()
+    wv_create_variable_labels()
 
   vars <- distinct(dat, variable)$variable
 
   if(is.null(pal)) {
+
+    get_pal <- colorRampPalette(c("#063E4D", "#62AECA", "#FFD118"))
+
     n <- length(vars)
-    if(n < 3) n <- 3
 
-    if(n <= 8)  pal <- brewer.pal(n, "Dark2")
-
-    # maybe if n > 8, make everything grey?
-    if(n > 8) {
-      # set up colour palette - need to interpolate with colorRampPalette
-      get_pal = colorRampPalette(brewer.pal(8, "Dark2"))
-      pal <- get_pal(n)
-    }
+    pal <- get_pal(n)
   }
 
-  # if(is.null(x_axis_label)) {
-  #   if (all(str_detect(vars, "height"))) {
-  #     x_axis_label <- "Wave Height (m)"
-  #   } else if (all(str_detect(vars, "period"))) {
-  #     x_axis_label <- "Wave Period (s)"
-  #   } else x_axis_label <- waiver()
-  # }
-
-  p <- ggplot(dat, aes(value, fill = variable)) +
+  p <- ggplot(dat, aes(value, fill = variable_label)) +
     geom_histogram(binwidth = binwidth, col = bar_outline) +
     scale_y_continuous(
       "Number of Observations", expand = expansion(mult = c(0, 0.1))
@@ -77,7 +63,7 @@ wv_plot_histogram <- function(
       strip.background = element_rect(colour = "grey80", fill = NA),
       strip.text = element_text(colour = "grey30", size = 10)
     ) +
-    facet_wrap(~variable_title, ncol = n_col, scales = scales)
+    facet_wrap(~variable_label, ncol = n_col, scales = scales)
 
   if(isFALSE(show_legend)) {
     p <- p +

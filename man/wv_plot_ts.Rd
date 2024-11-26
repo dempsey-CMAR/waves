@@ -19,8 +19,10 @@ wv_plot_ts(
 \item{vars}{Character vector of variables to pivot if \code{dat} is in a wide
 format. Default is all variables.}
 
-\item{pal}{Optional colour palette. Default is the "Dark2" palette from
-\code{Rcolourbrewer}.}
+\item{pal}{Optional colour palette. Default is c("#104862", "#62AECA",
+"#FFD118") (Indigo dye, Moonstone, Jonquil). For plots with more than 3
+variables, these colours are interpolated using
+\code{grDevices::colorRampPalette}.}
 
 \item{n_col}{Number of columns for faceted figure. Default is 1.}
 

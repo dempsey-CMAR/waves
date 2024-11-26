@@ -18,8 +18,10 @@ wv_plot_histogram(
 \arguments{
 \item{dat}{Data frame with wave parameter data in wide or long format.}
 
-\item{pal}{Optional colour palette. Default is the "Dark2" palette from
-\code{Rcolourbrewer}.}
+\item{pal}{Optional colour palette. Default is c("#104862", "#62AECA",
+"#FFD118") (Indigo dye, Moonstone, Jonquil). For plots with more than 3
+variables, these colours are interpolated using
+\code{grDevices::colorRampPalette}.}
 
 \item{x_axis_label}{Label for the x-axis. Default is "Wave Height (m)" if
 only plotting wave variables and "Wave Period (s)" if only plotting period
