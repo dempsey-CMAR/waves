@@ -36,7 +36,14 @@ dat3_2 <- dat5 %>%
 
 # grossrange test ---------------------------------------------------------
 
-dat_gr <- readRDS(paste0(path, "/wv_test_data_grossrange.RDS")) %>%
+height_vars <- c("significant_height_m", "average_height_largest_33_percent_m",
+                 "average_height_largest_10_percent_m", "maximum_height_m")
+period_vars <- c("peak_period_s", "period_largest_33_percent_s",
+                 "period_largest_10_percent_s", "period_maximum_s")
+
+dat <- readRDS(paste0(path, "/wv_test_data_grossrange.RDS"))
+
+dat_gr <- dat %>%
   wv_test_grossrange(county = "Halifax") %>%
   wv_pivot_flags_longer(qc_tests = "grossrange")
 
@@ -46,7 +53,11 @@ p <- wv_plot_flags(
 
 # note: user_min = gr_min, so obs on day 4 are flagged Fail (not suspect)
 gr_4 <- dat_gr %>%
-  filter(day_utc %in% c(2, 4, 6))
+  filter(
+    day_utc %in% c(2, 4, 6),
+    # these are now flagged by the crossref test NOT grossrange
+    !(variable %in% height_vars & day_utc == 2)
+  )
 
 # the direction variables cannot have flag of 3, since gr_max = user_max
 # and gr_min = user_min
@@ -66,6 +77,24 @@ gr_1 <- dat_gr %>%
       timestamp_utc, day_utc, variable, value, grossrange_flag_value
     ))
 
+
+
+# crossref check ----------------------------------------------------------
+dat_cc <- dat %>%
+  wv_test_crossref() %>%
+  wv_pivot_flags_longer(qc_tests =  "crossref")
+
+cc_4 <- dat_cc %>%
+  filter(
+    variable %in% c(height_vars, period_vars) & (day_utc %in% c(2, 4))
+  )
+cc_1 <- dat_cc %>%
+  dplyr::anti_join(
+    cc_4,
+    by = dplyr::join_by(
+      timestamp_utc, day_utc, variable, value, crossref_flag_value
+    )
+  )
 
 # rolling_sd --------------------------------------------------------------
 dat_rolling_sd <- readRDS(paste0(path, "/wv_test_data_rolling_sd.RDS")) %>%

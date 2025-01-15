@@ -38,7 +38,8 @@ wv_assign_max_flag <- function(dat, qc_tests = NULL, return_all = TRUE) {
     "longitude" ,
     "deployment_id",
     "timestamp_utc",
-    "depth_trim_flag"
+    "depth_trim_flag",
+    "trim_obs"
   )
 
   qc_test_cols <- wv_thresholds %>%

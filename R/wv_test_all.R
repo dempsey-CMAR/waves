@@ -58,7 +58,8 @@ wv_test_all <- function(
     "longitude" ,
     "deployment_id",
     "timestamp_utc",
-    "depth_trim_flag"
+    "depth_trim_flag",
+    "trim_obs"
   )
 
   #  use for the join and to order columns in output
@@ -103,7 +104,7 @@ wv_test_all <- function(
   }
 
   # remove empty list elements
-  dat_out <- Filter(Negate(is.null), dat_out)
+  #dat_out <- Filter(Negate(is.null), dat_out)
 
   # join results from each test
   join_cols <- c(

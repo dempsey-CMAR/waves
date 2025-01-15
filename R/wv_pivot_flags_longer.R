@@ -22,6 +22,7 @@ wv_pivot_flags_longer <- function(dat, qc_tests = NULL, vars = NULL) {
   if (is.null(qc_tests)) {
     qc_tests <- c(
       "grossrange",
+      "crossref",
       "rolling_sd",
       "spike",
       "qc"
@@ -37,6 +38,11 @@ wv_pivot_flags_longer <- function(dat, qc_tests = NULL, vars = NULL) {
   # pivot the flags indicated
   if ("grossrange" %in% qc_tests) {
     dat <- wv_pivot_single_test_longer(dat, qc_test = "grossrange")
+  }
+
+  # pivot the flags indicated
+  if ("crossref" %in% qc_tests) {
+    dat <- wv_pivot_single_test_longer(dat, qc_test = "crossref")
   }
 
   if ("rolling_sd" %in% qc_tests) {
