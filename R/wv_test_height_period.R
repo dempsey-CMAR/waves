@@ -1,5 +1,9 @@
 #' Additional qc for height and period variables
 #'
+#' See documentationf for \code{wv_test_height_period} for more detail.
+#'
+#' Useful for identifying poor-quality pairs of zero-up crossing parameters,
+#'
 #' @param dat Data frame of wave variables in wide format.
 #'
 #' @return Returns \code{dat} with flags for the height and period variables.

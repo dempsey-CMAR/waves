@@ -121,7 +121,7 @@ wv_convert_vars_to_ordered_factor <- function(dat) {
           "maximum_height_m",
           "period_maximum_s",
 
-          "to_direction_degree",
+          "from_direction_degree",
           "sensor_depth_below_surface_m",
 
           "sea_water_speed_m_s",
@@ -172,7 +172,7 @@ wv_create_variable_labels <- function(dat, convert_to_ordered_factor = TRUE) {
         variable == "period_largest_10_percent_s" ~ "T1/10 (s)",
         variable == "period_maximum_s" ~ "Tmax (s)",
 
-        variable == "to_direction_degree" ~ "Wave Direction (degree)",
+        variable == "from_direction_degree" ~ "Wave Direction (degree)",
         variable == "sensor_depth_below_surface_m" ~ "Sensor Depth Below Surface (m)",
         variable == "sea_water_speed_m_s" ~ "Sea Water Speed (m/s)",
         variable == "sea_water_to_direction_degree" ~ "Sea Water Direction (degree)",
@@ -240,7 +240,7 @@ wv_convert_vars_to_title <- function(dat, convert_to_ordered_factor = TRUE) {
           "Period of Largest 1/10 Waves",
         variable == "period_maximum_s" ~ "Period of Largest Waves",
 
-        variable == "to_direction_degree" ~ "Direction Wave is Travelling To",
+        variable == "from_direction_degree" ~ "Direction Wave is Travelling From",
         variable == "sensor_depth_below_surface_m" ~ "Sensor Depth Below Surface",
         variable == "sea_water_speed_m_s" ~ "Sea Water Speed",
         variable == "sea_water_to_direction_degree" ~
@@ -268,7 +268,7 @@ wv_convert_vars_to_title <- function(dat, convert_to_ordered_factor = TRUE) {
             "Largest Wave Height",
             "Period of Largest Waves",
 
-            "Direction Wave is Travelling To",
+            "Direction Wave is Travelling From",
             "Sensor Depth Below Surface",
 
             "Sea Water Speed",

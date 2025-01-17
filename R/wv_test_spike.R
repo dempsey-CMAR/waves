@@ -44,9 +44,7 @@ wv_test_spike <- function(
   if (is.null(wv_spike_table)) {
 
     wv_spike_table <- wv_thresholds %>%
-      filter(qc_test == "spike", county == !!county | is.na(county))
-
-    wv_spike_table <- wv_spike_table %>%
+      filter(qc_test == "spike", county == !!county | is.na(county)) %>%
       select(-c(qc_test, county)) %>%
       pivot_wider(values_from = "threshold_value", names_from = "threshold")
   }

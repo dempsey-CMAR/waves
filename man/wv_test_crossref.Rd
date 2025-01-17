@@ -13,5 +13,8 @@ wv_test_crossref(dat)
 Returns \code{dat} with flags for the height and period variables.
 }
 \description{
-Additional qc for height and period variables
+See documentationf for \code{wv_test_height_period} for more detail.
+}
+\details{
+Useful for identifying poor-quality pairs of zero-up crossing parameters,
 }

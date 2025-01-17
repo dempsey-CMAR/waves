@@ -81,7 +81,7 @@ dat <- dat_raw %>%
       day_utc == 2 & variable == "period_maximum_s" ~ -0.1,
 
       day_utc == 2 & variable %in% c(
-        "to_direction_degree",
+        "from_direction_degree",
         "sea_water_speed_m_s",
         "sea_water_to_direction_degree",
         "sensor_depth_below_surface_m"
@@ -91,7 +91,7 @@ dat <- dat_raw %>%
       # actually be flagged as 4
       day_utc == 4 ~ user_min - 1,
       # Flag 4 high
-      day_utc == 6 ~ gr_max + 2,
+      day_utc == 6 ~ gr_max + 3,
       # Flag 3 high
       day_utc == 8 ~ suspect_high,
       TRUE ~ value

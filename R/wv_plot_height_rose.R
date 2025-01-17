@@ -43,7 +43,7 @@ wv_plot_height_rose <- function(
     select(-contains("sea_water"), -contains("grossrange_flag")) %>%
     select(
       HEIGHT = contains("significant_height_m"),
-      DIRECTION = contains("to_direction_degree")
+      DIRECTION = contains("from_direction_degree")
     )
 
   if(ncol(dat) > 2) {

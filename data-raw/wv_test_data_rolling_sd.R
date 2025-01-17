@@ -28,7 +28,7 @@ stats <- wv_read_txt(path, "2022-09-29_western_shoal_test_data.txt") %>%
   summarise(mean = round(mean(value), digits = 3))
 
 roll_sd <- wv_thresholds %>%
-  filter(county == "Halifax", threshold == "rolling_sd_max") %>%
+  filter(county == "Halifax" | is.na(county), threshold == "rolling_sd_max") %>%
   select(variable, threshold_value)
 
 vars <- unique(roll_sd$variable)
@@ -78,11 +78,10 @@ dat_sd <- map_df(dat_test, .f = bind_rows) %>%
   select(county, station, deployment_id, everything())
 
 
-# dat_sd %>%
-#   wv_test_rolling_sd(county = "Halifax") %>%
-#   wv_pivot_vars_longer() %>%
-#   wv_pivot_flags_longer(qc_tests = "rolling_sd") %>%
-#   wv_plot_flags(qc_tests = "rolling_sd")
+dat_sd %>%
+  wv_test_rolling_sd(county = "Halifax") %>%
+  wv_pivot_flags_longer(qc_tests = "rolling_sd") %>%
+  wv_plot_flags(qc_tests = "rolling_sd")
 
 
 # Export rds file

@@ -10,7 +10,7 @@ test_that("wv_assign_cf_variable_names() assigns correct names()", {
       "sea_surface_wave_period_largest_10_percent_s",
       "sea_surface_wave_period_largest_33_percent_s",
       "sea_surface_wave_period_maximum_s",
-      "sea_surface_wave_to_direction_degree",
+      "sea_surface_wave_from_direction_degree",
       "sensor_depth_below_surface_m",
       "sea_water_speed_m_s",
       "sea_water_to_direction_degree")

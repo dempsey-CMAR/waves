@@ -33,7 +33,7 @@ stats <- wv_read_txt(path, "2022-09-29_western_shoal_test_data.txt") %>%
   ungroup()
 
 spike <- wv_thresholds %>%
-  filter(county == "Yarmouth", qc_test == "spike") %>%
+  filter(county == "Yarmouth" | is.na(county), qc_test == "spike") %>%
   select(-c(qc_test, county)) %>%
   pivot_wider(values_from = "threshold_value", names_from = "threshold")
 

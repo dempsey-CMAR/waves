@@ -88,9 +88,7 @@ wv_test_rolling_sd <- function(
   if (is.null(wv_rolling_sd_table)) {
 
     wv_rolling_sd_table <- wv_thresholds %>%
-      filter(qc_test == "rolling_sd", county == !!county)
-
-    wv_rolling_sd_table <- wv_rolling_sd_table %>%
+      filter(qc_test == "rolling_sd", county == !!county | is.na(county)) %>%
       select(-c(county, qc_test)) %>%
       pivot_wider(values_from = "threshold_value", names_from = "threshold")
   }

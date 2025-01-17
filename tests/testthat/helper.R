@@ -104,13 +104,8 @@ dat_rolling_sd <- readRDS(paste0(path, "/wv_test_data_rolling_sd.RDS")) %>%
 rolling_sd_3 <- dat_rolling_sd %>%
   filter(
     timestamp_utc >= as_datetime("2023-01-02 20:00:00") &
-      timestamp_utc <= as_datetime("2023-01-04 04:00:00") |
-      (timestamp_utc %in% c(
-        as_datetime("2023-01-02 18:00:00"),
-        as_datetime("2023-01-02 19:00:00")) &
-         variable == "period_maximum_s")
+      timestamp_utc <= as_datetime("2023-01-04 04:00:00")
   )
-
 
 rolling_sd_2 <- dat_rolling_sd %>%
   filter(

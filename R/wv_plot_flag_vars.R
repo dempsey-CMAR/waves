@@ -77,8 +77,6 @@ wv_plot_flags <- function(
 #'
 #' @param qc_test qc test to plot.
 #'
-#param var variable to plot.
-#'
 #' @inheritParams wv_plot_flags
 #'
 #' @return Returns a ggplot object; a figure for \code{qc_test}.
@@ -94,7 +92,6 @@ wv_plot_flags <- function(
 wv_ggplot_flags <- function(
     dat,
     qc_test,
-    #var,
     n_col = NULL,
     flag_title = TRUE,
     plotly_friendly = FALSE

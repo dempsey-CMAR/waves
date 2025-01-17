@@ -25,20 +25,10 @@ wv_pivot_vars_longer <- function(dat_wide, vars = NULL) {
       "period_largest_10_percent_s",
       "period_largest_33_percent_s",
       "period_maximum_s",
-      "to_direction_degree",
+      "from_direction_degree",
       "sensor_depth_below_surface_m",
       "sea_water_speed_m_s",
       "sea_water_to_direction_degree"
-
-      # "sea_surface_wave_significant_height_m",
-      # "sea_surface_wave_average_height_largest_10_percent_m",
-      # "sea_surface_wave_average_height_largest_33_percent_m",
-      # "sea_surface_wave_maximum_height_m",
-      # "sea_surface_wave_peak_period_s",
-      # "sea_surface_wave_period_largest_10_percent_s",
-      # "sea_surface_wave_period_largest_33_percent_s",
-      # "sea_surface_wave_period_maximum_s",
-      # "sea_surface_wave_to_direction_degree"
     )
   }
 
