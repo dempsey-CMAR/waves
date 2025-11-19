@@ -22,7 +22,7 @@ wv_pivot_flags_longer <- function(dat, qc_tests = NULL, vars = NULL) {
   if (is.null(qc_tests)) {
     qc_tests <- c(
       "grossrange",
-      "crossref",
+     # "crossref",
       "rolling_sd",
       "spike",
       "qc"
