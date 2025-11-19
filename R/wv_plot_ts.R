@@ -13,6 +13,9 @@
 #' @param show_legend Logical argument indicating whether to show figure legend.
 #'   Default is \code{FALSE}.
 #'
+#' @param line_width Numeric value specifying the line width. Passed to
+#'   \code{geom_line()}.
+#'
 #' @param n_col Number of columns for faceted figure. Default is 1.
 #'
 #' @param scales Character string indicating how to treat scales of the faceted
@@ -37,6 +40,7 @@ wv_plot_ts <- function(
     vars = NULL,
     pal = NULL,
     n_col = 1,
+    line_width = 1,
     scales = "fixed",
     show_legend = FALSE
 ) {
@@ -62,7 +66,7 @@ wv_plot_ts <- function(
 
 
   p <- ggplot(dat, aes(timestamp_utc, value, col = variable_label)) +
-    geom_line(linewidth = 1) +
+    geom_line(linewidth = line_width) +
     scale_x_datetime("Date", date_labels = "%Y-%m-%d") +
     scale_colour_manual("", values = pal) +
     theme_light() +

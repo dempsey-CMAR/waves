@@ -9,6 +9,7 @@ wv_plot_ts(
   vars = NULL,
   pal = NULL,
   n_col = 1,
+  line_width = 1,
   scales = "fixed",
   show_legend = FALSE
 )
@@ -25,6 +26,9 @@ variables, these colours are interpolated using
 \code{grDevices::colorRampPalette}.}
 
 \item{n_col}{Number of columns for faceted figure. Default is 1.}
+
+\item{line_width}{Numeric value specifying the line width. Passed to
+\code{geom_line()}.}
 
 \item{scales}{Character string indicating how to treat scales of the faceted
 plot. Passed to \code{facet_wrap()}. Default is "fixed". Other options are
