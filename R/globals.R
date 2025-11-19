@@ -26,6 +26,18 @@ utils::globalVariables(c(
   "Ensemble Intervals (s)",
   "Pings per Ensemble",
 
+  "station",
+  "deployment_date",
+  "deployment_sounding_m",
+  "latitude",
+  "longitude",
+  "depl_duration",
+  "recovery_date",
+  "sensor_model",
+  "wave_averaging_interval_s",
+  "wave_ensemble_interval_s",
+  "wave_pings_per_ensemble",
+
   # format_report_table
   "Record",
 
