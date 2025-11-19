@@ -2,17 +2,17 @@
 % Please edit documentation in R/wv_write_report_table.R
 \name{wv_write_report_table}
 \alias{wv_write_report_table}
-\title{Writes deployment table for summary report}
+\title{Writes deployment table for summary report from ADCP TRACKING}
 \usage{
 wv_write_report_table(metadata)
 }
 \arguments{
-\item{metadata}{Deployment metadata from the NSDFA tracking sheet.}
+\item{metadata}{Deployment metadata from the ADCP TRACKING "Deployment
+Details" sheet.}
 }
 \value{
-Returns a tibble with three columns: \code{DEPLOYMENT},
-  \code{Depl_Date}, and \code{Station_Name}.
+Returns a tibble with columns for the report table.
 }
 \description{
-Writes deployment table for summary report
+Writes deployment table for summary report from ADCP TRACKING
 }
