@@ -118,6 +118,7 @@ wv_append_long_variable_names <- function(dat) {
     )
 
   colnames(dat) <- new_colnames$column_names
+  colnames(dat) <- new_colnames$column_names
 
   dat
 
