@@ -198,7 +198,6 @@ dat_max_flag <- data.frame(
 # export dat_qc from wv_test_Data_grossrange
 dat_trim <- readRDS(paste0(path, "/wv_test_data_grossrange.RDS")) %>%
   wv_start_end_obs_to_trim(return_depth_diff = TRUE)
-  #wv_flag_sensor_depth_to_trim(return_depth_diff = TRUE)
 
 dat_trim_4 <- dat_trim %>%
   dplyr::slice(c(1, 2, nrow(dat_trim) - 1, nrow(dat_trim)))
