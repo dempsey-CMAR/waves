@@ -15,8 +15,7 @@ wv_test_all(
   max_interval_hours = 2,
   align_window = "center",
   keep_sd_cols = FALSE,
-  keep_spike_cols = FALSE,
-  ping = FALSE
+  keep_spike_cols = FALSE
 )
 }
 \arguments{
@@ -77,12 +76,6 @@ and \code{sd_roll}) are returned in \code{dat}. Default is \code{FALSE}.}
 \item{keep_spike_cols}{Logical value. If \code{TRUE}, the columns used to
 produce the spike value are returned in \code{dat}. Default is
 \code{FALSE}.}
-
-\item{ping}{Logical argument. If \code{TRUE}, a "ping" sound will be played
-when the function has completed. If function is run several times in quick
-succession (e.g., for testing the package), this can cause R to abort the
-session. Caution is advised when setting this argument to \code{TRUE}.
-Default is \code{ping = FALSE}.}
 }
 \value{
 Returns \code{dat} with additional quality control flag columns.

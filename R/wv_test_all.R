@@ -6,19 +6,12 @@
 #'   \code{dat}. Defaults to all available tests: \code{qc_tests =
 #'   c("grossrange", "rolling_sd", "spike")}.
 #'
-#' @param ping Logical argument. If \code{TRUE}, a "ping" sound will be played
-#'   when the function has completed. If function is run several times in quick
-#'   succession (e.g., for testing the package), this can cause R to abort the
-#'   session. Caution is advised when setting this argument to \code{TRUE}.
-#'   Default is \code{ping = FALSE}.
-#'
 #' @inheritParams wv_test_grossrange
 #' @inheritParams wv_test_rolling_sd
 #' @inheritParams wv_test_spike
 #'
 #' @return Returns \code{dat} with additional quality control flag columns.
 #'
-#' @importFrom beepr beep
 #' @importFrom dplyr %>% arrange distinct left_join
 #' @importFrom purrr reduce
 #'
@@ -37,9 +30,7 @@ wv_test_all <- function(
     max_interval_hours = 2,
     align_window = "center",
     keep_sd_cols = FALSE,
-    keep_spike_cols = FALSE,
-
-    ping = FALSE
+    keep_spike_cols = FALSE
 ) {
 
   if (is.null(qc_tests)) {
@@ -113,8 +104,6 @@ wv_test_all <- function(
   # join by all common columns
   dat_out <- dat_out %>%
     purrr::reduce(dplyr::left_join, by = join_cols)
-
-  if(isTRUE(ping)) beep("ping")
 
   dat_out
 }
