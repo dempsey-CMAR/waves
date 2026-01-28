@@ -1,4 +1,4 @@
-#' Writes deployment table for summary report from ADCP TRACKING
+#' Writes deployment table for summary report
 #'
 #' @param metadata Deployment metadata from the ADCP TRACKING "Deployment
 #'   Details" sheet.
@@ -13,14 +13,14 @@ wv_write_report_table <- function(metadata) {
   metadata %>%
     mutate(
       depl_duration = as.numeric(
-        difftime(recovery_date, deployment_date, units = "days")
+        difftime(retrieval_date, deployment_date, units = "days")
       )
     ) %>%
     select(
       Station = station,
       `Instrument Model` = sensor_model,
       Latitude = latitude, Longitude = longitude,
-      `Deployment Date` = deployment_date, `Recovery Date` = recovery_date,
+      `Deployment Date` = deployment_date, `Recovery Date` = retrieval_date,
       `Duration (d)` = depl_duration,
       `Depth Sounding (m)` = deployment_sounding_m,
       `Ensemble Intervals (s)` = wave_ensemble_interval_s,

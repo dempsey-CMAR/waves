@@ -2,7 +2,7 @@
 % Please edit documentation in R/wv_write_report_table.R
 \name{wv_write_report_table}
 \alias{wv_write_report_table}
-\title{Writes deployment table for summary report from ADCP TRACKING}
+\title{Writes deployment table for summary report}
 \usage{
 wv_write_report_table(metadata)
 }
@@ -14,5 +14,5 @@ Details" sheet.}
 Returns a tibble with columns for the report table.
 }
 \description{
-Writes deployment table for summary report from ADCP TRACKING
+Writes deployment table for summary report
 }

@@ -71,7 +71,7 @@ wv_test_crossref <- function(dat) {
 #' @return Returns \code{dat} with updated flags for the height variable.
 #'
 #' @importFrom dplyr case_when mutate rename
-#' @importFrom data.table :=
+#' @importFrom rlang :=
 #'
 #' @export
 

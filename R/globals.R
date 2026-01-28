@@ -32,14 +32,15 @@ utils::globalVariables(c(
   "latitude",
   "longitude",
   "depl_duration",
-  "recovery_date",
+  "retrieval_date",
   "sensor_model",
   "wave_averaging_interval_s",
   "wave_ensemble_interval_s",
   "wave_pings_per_ensemble",
 
   # format_report_table
-  "Record",
+  #"Record",
+  "col1",
 
   # helpers
   "depl_date",
@@ -64,6 +65,18 @@ utils::globalVariables(c(
   "value",
   "timestamp_utc",
  # "x",
+
+ # wv_plot_height_rose
+ "col_to_cut",
+ "from_direction_degree",
+ "from_direction_degree_labels",
+ "ints",
+ "ints_label",
+ "lower",
+ "n_prop",
+ "significant_height_m",
+ "significant_height_m_labels",
+ "upper",
 
   # wv_test_grossrange
   "height_m",

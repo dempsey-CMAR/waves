@@ -2,39 +2,42 @@
 % Please edit documentation in R/wv_plot_height_rose.R
 \name{wv_plot_height_rose}
 \alias{wv_plot_height_rose}
-\title{Generate current rose}
+\title{Generate wave height rose}
 \usage{
 wv_plot_height_rose(
   dat,
-  breaks = NULL,
-  height_cols = NULL,
-  height_label = "Wave Height (m)"
+  pal = NULL,
+  height_col = significant_height_m_labels,
+  direction_col = from_direction_degree_labels,
+  height_label = "Wave Height (m)",
+  ncol_legend = 2
 )
 }
 \arguments{
-\item{dat}{Data frame with one column name that includes the string
-"significant_height_m" and one column name that includes the string
-"direction". Other columns will be ignored.}
+\item{dat}{Data frame with at least 2 columns: an ordered factor of direction
+groups, and a factor of height groups. The proportion of observations in
+each group is counted in the function and automatically converted to
+percent for the figure.}
 
-\item{breaks}{Number of break points for current speed OR a vector of breaks.
-Lower-inclusive. Default is 0 to the maximum height by 0.5 m or 0.25 m
-increments.}
+\item{pal}{Vector of colours. Must be the same length as the number of speed
+factor levels.}
 
-\item{height_cols}{Vector of colours. Must be the same length as
-\code{breaks}. Default is the magma palette from \code{viridis}.}
+\item{height_col}{The column in \code{dat} that holds the height groups (NOT
+QUOTED).}
+
+\item{direction_col}{The column in \code{dat} that holds the direction groups
+(NOT QUOTED).}
 
 \item{height_label}{Title of the current speed legend. Default is "Wave
 Height (m)".}
+
+\item{ncol_legend}{Number of columns for the figure legend. Default is 2.}
 }
 \value{
-Returns an "openair" object, a rose plot of current speed and
-  direction.
+Returns a ggplot object, a rose plot of current speed and direction.
 }
 \description{
-Generate current rose
-}
-\details{
-Generates a wave height rose using the \code{windRose()} function
-  from the \code{openair} package. See help files for
-  \code{openair::windRose} for more detail.
+The direction of the petal indicates the direction the wave is travelling
+from. The colour indicates the wave height. The length of the petal shows the
+number of observations for each wave height and direction bin.
 }

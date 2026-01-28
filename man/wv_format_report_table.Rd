@@ -2,14 +2,12 @@
 % Please edit documentation in R/wv_format_report_table.R
 \name{wv_format_report_table}
 \alias{wv_format_report_table}
-\title{Formats tables for summary report}
+\title{Formats tables for typst summary report}
 \usage{
 wv_format_report_table(report_table, transpose = TRUE)
 }
 \arguments{
-\item{report_table}{Table to include in the summary report. Either the
-deployment metadata from the NSDFA tracking sheet (as returned from
-\code{adcp_write_report_table()}, or the document history) .}
+\item{report_table}{Table to include in the summary report.}
 
 \item{transpose}{Logical argument indicating whether to transpose
 \code{report_table} before applying the format. Use the default \code{TRUE}
@@ -17,11 +15,10 @@ for the deployment table. Set to \code{FALSE} for the document history
 table.}
 }
 \value{
-Returns a flextable object that will render nicely in the Word
-  report. A table with two columns: the first column (bold) is the column
-  names of \code{report_table}; the second column is the corresponding
-  entries in \code{report_table}.
+Returns a data frame that will render nicely in the typst report.
+  Every cell is converted to text inside square brackets and separated with
+  ",", as expected by the typst table function.
 }
 \description{
-Formats tables for summary report
+Formats tables for typst summary report
 }
